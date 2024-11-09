@@ -610,7 +610,7 @@ local function createFistModel()
 
     -- Animate the fist model
     for i = 1, 5 do
-        wait(0.275)
+        wait(0.375)
         fistModel:SetPrimaryPartCFrame(fistModel.PrimaryPart.CFrame + Vector3.new(0, -6.2, 0))
     end
     for i = 1, 5 do        
