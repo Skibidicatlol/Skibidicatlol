@@ -526,7 +526,7 @@ end)
             
         end)
         spawn(function()
-            wait(17.75)
+            wait(18.25)
             local fxUi = localPlayer:WaitForChild("PlayerGui"):WaitForChild("FXUi")
             local impactFrames = fxUi:WaitForChild("ImpactFrames")
             local impactsound = Instance.new("Sound", character.Torso)
