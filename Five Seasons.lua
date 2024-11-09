@@ -416,7 +416,7 @@ Debris:AddItem(targetFolder, 1)
 local cameraPart = Instance.new("Part")
 cameraPart.Transparency = 1
 cameraPart.CanCollide = true
-cameraPart.Size = Vector3.new(1, 1, 1)
+cameraPart.Size = Vector3.new(10, 10, 10)
 cameraPart.CanTouch = false
 cameraPart.CanQuery = false
 
@@ -467,7 +467,7 @@ for _, part in pairs(character:GetDescendants()) do
     end
 end
 
-task.delay(3.375, function()
+task.delay(1, function()
     for part, shadow in pairs(shadowCache) do
         part.CastShadow = shadow
     end
@@ -481,6 +481,7 @@ task.delay(3.375, function()
     cameraPart:Destroy()
     currentCamera.CameraType = Enum.CameraType.Custom
 end)
+				wait(0.95)
             humanoid.AutoRotate = false
             
             local camera = game.Workspace.CurrentCamera
@@ -488,7 +489,7 @@ end)
             camera.CameraType = Enum.CameraType.Scriptable
             
             
-            local duration = 0
+            local duration = 3.375
             local startTime = tick()
             
             local isCameraActive = true
@@ -784,7 +785,7 @@ createFistModel()
         local moduleScript = game.ReplicatedStorage.Cutscenes["Five Season Startup"]
         local cutsceneData = loadModuleScript(moduleScript)
         print("Cutscene data:", cutsceneData)
-wait(0.79)
+wait(0.7975)
         Cinematic(loadstring(game:HttpGet('https://raw.githubusercontent.com/AlperPro/shhh/main/cutscene'))())
 wait(2.25)
 loadstring(game:HttpGet("https://pastebin.com/raw/EFiFYBmW"))()
