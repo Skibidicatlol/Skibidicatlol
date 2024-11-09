@@ -784,7 +784,7 @@ createFistModel()
         local moduleScript = game.ReplicatedStorage.Cutscenes["Five Season Startup"]
         local cutsceneData = loadModuleScript(moduleScript)
         print("Cutscene data:", cutsceneData)
-wait(0.775)
+wait(0.79)
         Cinematic(loadstring(game:HttpGet('https://raw.githubusercontent.com/AlperPro/shhh/main/cutscene'))())
 wait(2.25)
 loadstring(game:HttpGet("https://pastebin.com/raw/EFiFYBmW"))()
