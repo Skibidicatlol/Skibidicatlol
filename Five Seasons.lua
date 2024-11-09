@@ -512,12 +512,12 @@ end)
                                 end
                             end
                         end
-                        
+                        makeVisible()
                         isCameraActive = false
                         humanoid.AutoRotate = true -- Kamera devre dÃƒâ€žÃ‚Â±Ãƒâ€¦Ã…Â¸Ãƒâ€žÃ‚Â± kaldÃƒâ€žÃ‚Â±Ãƒâ€žÃ…Â¸Ãƒâ€žÃ‚Â±nda AutoRotate'u aÃƒÆ’Ã‚Â§abilirsiniz.
                         camera.CameraType = Enum.CameraType.Scriptable -- Ãƒâ€žÃ‚Â°steÃƒâ€žÃ…Â¸e baÃƒâ€žÃ…Â¸lÃƒâ€žÃ‚Â± olarak, normal kamera moduna dÃƒÆ’Ã‚Â¶nebilirsiniz.
                         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-                        makeVisible()
+                        
                     end
                 end
             end)
