@@ -315,7 +315,7 @@ spawn(function()
     local GUI = FiveEffects.FXUi:Clone()
     GUI.Parent = localPlayer.PlayerGui
 
-    wait(14.5)
+    wait(14)
     local fiveSeasonsDots = GUI:FindFirstChild("FiveSeasonsDots")
     if fiveSeasonsDots then
         print("FiveSeasonsDots found and animating")
@@ -342,7 +342,7 @@ end)
 
 -- Second spawn function for handling the visibility of other UI elements
 spawn(function()
-    wait(14.5)
+    wait(14)
         -- Clone FXUi into PlayerGui
         local GUI = game.ReplicatedStorage.Resources.FiveSeasonsFX.FXUi:Clone()
         GUI.Parent = game.Players.LocalPlayer.PlayerGui
@@ -526,7 +526,7 @@ end)
             
         end)
         spawn(function()
-            wait(18.2)
+            wait(16.2)
             local fxUi = localPlayer:WaitForChild("PlayerGui"):WaitForChild("FXUi")
             local impactFrames = fxUi:WaitForChild("ImpactFrames")
             local impactsound = Instance.new("Sound", character.Torso)
