@@ -526,7 +526,7 @@ end)
             
         end)
         spawn(function()
-            wait(18.75)
+            wait(17.85)
             local fxUi = localPlayer:WaitForChild("PlayerGui"):WaitForChild("FXUi")
             local impactFrames = fxUi:WaitForChild("ImpactFrames")
             local impactsound = Instance.new("Sound", character.Torso)
@@ -610,7 +610,7 @@ local function createFistModel()
 
     -- Animate the fist model
     for i = 1, 5 do
-        wait(0.25)
+        wait(0.275)
         fistModel:SetPrimaryPartCFrame(fistModel.PrimaryPart.CFrame + Vector3.new(0, -6.2, 0))
     end
     for i = 1, 5 do        
