@@ -833,4 +833,6 @@ w:Destroy()
 sp:Destroy()
 wl:Destroy()
 d.Destroy()
+n:Destroy()
+r:Destroy()
     
