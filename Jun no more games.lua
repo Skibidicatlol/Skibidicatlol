@@ -652,15 +652,8 @@ task.wait(1) --how long the final image is shown
 screenGui:Destroy()
 
 wait(0.5)
-soundeffect:Stop()
+soundeffect:stop()
 
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://17356346310"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 1
-
-wait(3.5)
 
 local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://3755636438"
@@ -683,6 +676,8 @@ animationTrack:play()
 wait(1.5)
 
 animationTrack:Stop()
+
+
 
 local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://3755636438"
@@ -786,7 +781,12 @@ child:Emit(10)
         end
 end
 
-
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://17356346310"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1
+soundeffect.TimePosition = 6.1
 
 local p = game.Players.LocalPlayer
 local c = p.Character or p.CharacterAdded:Wait()
