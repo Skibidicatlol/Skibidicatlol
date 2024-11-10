@@ -537,3 +537,10 @@ red4.Parent = game.Players.LocalPlayer.Character["Head"]
             child:Emit(20) -- Emit 20 particles
         end
         end
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://18460863844"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1
+soundeffect.TimePosition = 6.5
