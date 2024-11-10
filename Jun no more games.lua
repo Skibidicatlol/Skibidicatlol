@@ -603,6 +603,12 @@ end)
 
 wait(0.25)
 
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://18109164000"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1
+
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
