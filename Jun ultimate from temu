@@ -1,0 +1,539 @@
+coroutine.wrap(function()
+    -- Ensure the necessary services are available
+    local ts = game:GetService("TweenService")
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    -- Create the BillboardGui and its components
+    local Dialogue = Instance.new("BillboardGui")
+    local Chat1 = Instance.new("Frame")
+    local Sub = Instance.new("TextLabel")
+
+    -- Configure the BillboardGui
+    Dialogue.Active = true
+    Dialogue.Size = UDim2.new(15, 0, 15, 0)
+    Dialogue.StudsOffset = Vector3.new(0, 0, 2) -- Adjust the offset to make it visible
+    Dialogue.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Dialogue.Name = "Dialogue"
+    Dialogue.Parent = humanoidRootPart
+
+    -- Configure the frame inside the BillboardGui
+    Chat1.AnchorPoint = Vector2.new(0.5, 0.5)
+    Chat1.BackgroundColor3 = Color3.new(1, 1, 1)
+    Chat1.BorderColor3 = Color3.new(0, 0, 0)
+    Chat1.BorderSizePixel = 2
+    Chat1.Position = UDim2.new(0.600000024, 0, -0.2, 0) -- Adjust the position for visibility
+    Chat1.Size = UDim2.new(0.100000001, 0, 0.200000003, 0)
+    Chat1.Name = "Chat1"
+    Chat1.BackgroundTransparency = 1
+    Chat1.Parent = Dialogue
+
+    -- Configure the TextLabel inside the frame
+    Sub.FontFace = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+    Sub.Text = "Ha ha hah"
+    Sub.TextColor3 = Color3.new(0, 0, 0)
+    Sub.TextScaled = true
+    Sub.TextSize = 14
+    Sub.TextWrapped = true
+    Sub.AnchorPoint = Vector2.new(0.5, 0.5)
+    Sub.BackgroundColor3 = Color3.new(1, 1, 1)
+    Sub.TextTransparency = 1
+    Sub.BorderColor3 = Color3.new(0, 0, 0)
+    Sub.BorderSizePixel = 0
+    Sub.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Sub.Size = UDim2.new(0.850000024, 0, 0.349999994, 0)
+    Sub.Name = "Sub"
+    Sub.Parent = Chat1
+    Sub.BackgroundTransparency = 1
+
+    -- Ensure cleanup of the BillboardGui elements after some time
+    game.Debris:AddItem(Chat1, 25)
+    game.Debris:AddItem(Sub, 25)
+
+    -- Define the tweenProperty function if missing
+    local function tweenProperty(object, properties, time)
+        local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        local tween = ts:Create(object, tweenInfo, properties)
+        tween:Play()
+        return tween
+    end
+
+    -- Animations for transparency and positioning
+    tweenProperty(Chat1, {BackgroundTransparency = 0}, 1)
+    tweenProperty(Sub, {TextTransparency = 0}, 1)
+    tweenProperty(Chat1, {Position = UDim2.new(0.6, 0, 0.4, 0)}, 1)
+    task.wait(0.75)
+    tweenProperty(Chat1, {BackgroundTransparency = 1}, 2)
+    tweenProperty(Sub, {TextTransparency = 1}, 2)
+end)()
+
+task.spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local teleportDistance = 0.125 -- The distance to teleport forward each step
+    local teleportInterval = 0 -- Time interval between each teleport (in seconds)
+    local totalDuration = 3.25 -- Total duration of the teleportation (in seconds)
+
+    local timeElapsed = 0
+    local startTime = tick() -- Record the start time
+
+    while timeElapsed < totalDuration do
+        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, -teleportDistance)
+        wait(teleportInterval)
+        timeElapsed = tick() - startTime -- Update the elapsed time
+    end
+end)
+
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://15962326593"
+
+local playAnim = humanoid:LoadAnimation(anim)
+playAnim:Play()
+playAnim:AdjustSpeed(0.75)
+
+wait(0.75)
+coroutine.wrap(function()
+    -- Ensure the necessary services are available
+    local ts = game:GetService("TweenService")
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    -- Create the BillboardGui and its components
+    local Dialogue = Instance.new("BillboardGui")
+    local Chat1 = Instance.new("Frame")
+    local Sub = Instance.new("TextLabel")
+
+    -- Configure the BillboardGui
+    Dialogue.Active = true
+    Dialogue.Size = UDim2.new(15, 0, 15, 0)
+    Dialogue.StudsOffset = Vector3.new(0, 0, 2) -- Adjust the offset to make it visible
+    Dialogue.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Dialogue.Name = "Dialogue"
+    Dialogue.Parent = humanoidRootPart
+
+    -- Configure the frame inside the BillboardGui
+    Chat1.AnchorPoint = Vector2.new(0.5, 0.5)
+    Chat1.BackgroundColor3 = Color3.new(1, 1, 1)
+    Chat1.BorderColor3 = Color3.new(0, 0, 0)
+    Chat1.BorderSizePixel = 2
+    Chat1.Position = UDim2.new(0.600000024, 0, -0.2, 0) -- Adjust the position for visibility
+    Chat1.Size = UDim2.new(0.100000001, 0, 0.200000003, 0)
+    Chat1.Name = "Chat1"
+    Chat1.BackgroundTransparency = 1
+    Chat1.Parent = Dialogue
+
+    -- Configure the TextLabel inside the frame
+    Sub.FontFace = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+    Sub.Text = "You shouldn't have done that"
+    Sub.TextColor3 = Color3.new(0, 0, 0)
+    Sub.TextScaled = true
+    Sub.TextSize = 14
+    Sub.TextWrapped = true
+    Sub.AnchorPoint = Vector2.new(0.5, 0.5)
+    Sub.BackgroundColor3 = Color3.new(1, 1, 1)
+    Sub.TextTransparency = 1
+    Sub.BorderColor3 = Color3.new(0, 0, 0)
+    Sub.BorderSizePixel = 0
+    Sub.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Sub.Size = UDim2.new(0.850000024, 0, 0.349999994, 0)
+    Sub.Name = "Sub"
+    Sub.Parent = Chat1
+    Sub.BackgroundTransparency = 1
+
+    -- Ensure cleanup of the BillboardGui elements after some time
+    game.Debris:AddItem(Chat1, 25)
+    game.Debris:AddItem(Sub, 25)
+
+    -- Define the tweenProperty function if missing
+    local function tweenProperty(object, properties, time)
+        local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        local tween = ts:Create(object, tweenInfo, properties)
+        tween:Play()
+        return tween
+    end
+
+    -- Animations for transparency and positioning
+    tweenProperty(Chat1, {BackgroundTransparency = 0}, 1)
+    tweenProperty(Sub, {TextTransparency = 0}, 1)
+    tweenProperty(Chat1, {Position = UDim2.new(0.6, 0, 0.4, 0)}, 1)
+    task.wait(2)
+    tweenProperty(Chat1, {BackgroundTransparency = 1}, 2)
+    tweenProperty(Sub, {TextTransparency = 1}, 2)
+end)()
+wait(2.375)
+playAnim:Stop()
+
+task.spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local teleportDistance = 0.125 -- The distance to teleport forward each step
+    local teleportInterval = 0 -- Time interval between each teleport (in seconds)
+    local totalDuration = 1.475 -- Total duration of the teleportation (in seconds)
+
+    local timeElapsed = 0
+    local startTime = tick() -- Record the start time
+
+    while timeElapsed < totalDuration do
+        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(0, 10, -teleportDistance)
+        wait(teleportInterval)
+        timeElapsed = tick() - startTime -- Update the elapsed time
+    end
+end)
+
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://18464351556"
+
+local playAnim = humanoid:LoadAnimation(anim)
+playAnim:Play()
+playAnim:AdjustSpeed(0.75)
+
+task.spawn(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local teleportDistance = 0.75 -- The distance to teleport forward each step
+    local teleportInterval = 0 -- Time interval between each teleport (in seconds)
+    local totalDuration = 2 -- Total duration of the teleportation (in seconds)
+
+    local timeElapsed = 0
+    local startTime = tick() -- Record the start time
+
+    while timeElapsed < totalDuration do
+        humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.new(0, -0, -2 -teleportDistance)
+        wait(teleportInterval)
+        timeElapsed = tick() - startTime -- Update the elapsed time
+    end
+end)
+wait(1.75)
+wait(0.25)
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://4307204452"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 5
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function createCraterRocks(character, positionOffset)
+    local rocks = {}
+    local radius = 25
+    local angleStep = 2 * math.pi / 10
+
+    for i = 1, 10 do
+        local rock = Instance.new("Part")
+        rock.Size = Vector3.new(math.random(2.5, 40), math.random(10, 20), math.random(10, 20))
+        rock.Shape = Enum.PartType.Block
+        rock.Anchored = true
+        rock.CanCollide = true
+        rock.Color = Color3.fromRGB(100, 100, 100)
+        rock.Material = Enum.Material.Slate
+        rock.Parent = workspace
+
+        local rockAngle = (i - 1) * angleStep
+        local offsetX = math.cos(rockAngle) * (radius + math.random(-2, 5))
+        local offsetZ = math.sin(rockAngle) * (radius + math.random(-2, 5))
+        local offsetPosition = Vector3.new(offsetX, 1, offsetZ) + positionOffset
+        rock.Position = character.PrimaryPart.Position + offsetPosition
+        local randomTiltX = math.rad(math.random(-20, 20))
+        local randomTiltZ = math.rad(math.random(-20, 20))
+        rock.CFrame = rock.CFrame * CFrame.Angles(randomTiltX, 0, randomTiltZ)
+
+        -- Set target position
+        local targetPosition = rock.Position - Vector3.new(0, 40, 0)
+        local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear)
+        coroutine.wrap(function()
+            wait(10)
+            local tween = TweenService:Create(rock, tweenInfo, {Position = targetPosition})
+            tween:Play()
+
+            tween.Completed:Connect(function()
+                rock:Destroy()
+            end)
+        end)()
+
+        table.insert(rocks, rock)
+    end
+end
+
+createCraterRocks(character, Vector3.new(0, -10, 0))
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    createCraterRocks(newCharacter, Vector3.new(0, 10, 0))
+end)
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function createCraterRocks(character, positionOffset)
+    local rocks = {}
+    local radius = 12.5
+    local angleStep = 2 * math.pi / 10
+
+    for i = 1, 10 do
+        local rock = Instance.new("Part")
+        rock.Size = Vector3.new(math.random(5, 5), math.random(5, 5), math.random(5, 5))
+        rock.Shape = Enum.PartType.Block
+        rock.Anchored = true
+        rock.CanCollide = true
+        rock.Color = Color3.fromRGB(100, 100, 100)
+        rock.Material = Enum.Material.Slate
+        rock.Parent = workspace
+
+        local rockAngle = (i - 1) * angleStep
+        local offsetX = math.cos(rockAngle) * (radius + math.random(-2, 5))
+        local offsetZ = math.sin(rockAngle) * (radius + math.random(-2, 5))
+        local offsetPosition = Vector3.new(offsetX, 1, offsetZ) + positionOffset
+        rock.Position = character.PrimaryPart.Position + offsetPosition
+        local randomTiltX = math.rad(math.random(-20, 20))
+        local randomTiltZ = math.rad(math.random(-20, 20))
+        rock.CFrame = rock.CFrame * CFrame.Angles(randomTiltX, 0, randomTiltZ)
+
+        -- Set target position
+        local targetPosition = rock.Position - Vector3.new(0, 10, 0)
+        local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear)
+        coroutine.wrap(function()
+            wait(5)
+            local tween = TweenService:Create(rock, tweenInfo, {Position = targetPosition})
+            tween:Play()
+
+            tween.Completed:Connect(function()
+                rock:Destroy()
+            end)
+        end)()
+
+        table.insert(rocks, rock)
+    end
+end
+
+createCraterRocks(character, Vector3.new(0, -5, 0))
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    createCraterRocks(newCharacter, Vector3.new(0, -20, 0))
+end)
+
+        
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function createCraterRocks(character, positionOffset)
+    local rocks = {}
+    local radius = 12.5
+    local angleStep = 2 * math.pi / 10
+
+    for i = 1, 10 do
+        local rock = Instance.new("Part")
+        rock.Size = Vector3.new(math.random(5, 5), math.random(5, 5), math.random(5, 5))
+        rock.Shape = Enum.PartType.Block
+        rock.Anchored = true
+        rock.CanCollide = true
+        rock.Color = Color3.fromRGB(128, 128, 128)
+        rock.Material = Enum.Material.Slate
+        rock.Parent = workspace
+
+        local rockAngle = (i - 1) * angleStep
+        local offsetX = math.cos(rockAngle) * (radius + math.random(-2, 5))
+        local offsetZ = math.sin(rockAngle) * (radius + math.random(-2, 5))
+        local offsetPosition = Vector3.new(offsetX, 1, offsetZ) + positionOffset
+        rock.Position = character.PrimaryPart.Position + offsetPosition
+        local randomTiltX = math.rad(math.random(-20, 20))
+        local randomTiltZ = math.rad(math.random(-20, 20))
+        rock.CFrame = rock.CFrame * CFrame.Angles(randomTiltX, 0, randomTiltZ)
+
+        -- Set target position
+        local targetPosition = rock.Position - Vector3.new(0, 10, 0)
+        local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear)
+        coroutine.wrap(function()
+            wait(5)
+            local tween = TweenService:Create(rock, tweenInfo, {Position = targetPosition})
+            tween:Play()
+
+            tween.Completed:Connect(function()
+                rock:Destroy()
+            end)
+        end)()
+
+        table.insert(rocks, rock)
+    end
+end
+
+createCraterRocks(character, Vector3.new(0, -5, 0))
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    createCraterRocks(newCharacter, Vector3.new(0, -20, 0))
+end)
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function createCraterRocks(character, positionOffset)
+    local rocks = {}
+    local radius = 5
+    local angleStep = 2 * math.pi / 10
+
+    for i = 1, 10 do
+        local rock = Instance.new("Part")
+        rock.Size = Vector3.new(math.random(1.25, 1.25), math.random(1.25, 1.25), math.random(1.25, 1.25))
+        rock.Shape = Enum.PartType.Block
+        rock.Anchored = false
+        rock.CanCollide = true
+        rock.Color = Color3.fromRGB(100, 100, 100)
+        rock.Material = Enum.Material.Slate
+        rock.Parent = workspace
+
+        local rockAngle = (i - 1) * angleStep
+        local offsetX = math.cos(rockAngle) * (radius + math.random(-2, 5))
+        local offsetZ = math.sin(rockAngle) * (radius + math.random(-2, 5))
+        local offsetPosition = Vector3.new(offsetX, 1, offsetZ) + positionOffset
+        rock.Position = character.PrimaryPart.Position + offsetPosition
+        local randomTiltX = math.rad(math.random(-20, 20))
+        local randomTiltZ = math.rad(math.random(-20, 20))
+        rock.CFrame = rock.CFrame * CFrame.Angles(randomTiltX, 0, randomTiltZ)
+
+        -- Set target position
+        local targetPosition = rock.Position - Vector3.new(0, 0, 0)
+        local tweenInfo = TweenInfo.new(5, Enum.EasingStyle.Linear)
+        coroutine.wrap(function()
+            wait(5)
+rock:Destroy()
+            local tween = TweenService:Create(rock, tweenInfo, {Position = targetPosition})
+            tween:Play()
+
+            tween.Completed:Connect(function()
+                
+            end)
+        end)()
+
+        table.insert(rocks, rock)
+    end
+end
+
+createCraterRocks(character, Vector3.new(0, 20, 0))
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    createCraterRocks(newCharacter, Vector3.new(0, 0, 0))
+end)
+playAnim:Stop()
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://13499771836"
+
+local playAnim = humanoid:LoadAnimation(anim)
+playAnim:Play()
+playAnim:AdjustSpeed(0.75)
+
+wait(0.75)
+
+coroutine.wrap(function()
+    -- Ensure the necessary services are available
+    local ts = game:GetService("TweenService")
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    -- Create the BillboardGui and its components
+    local Dialogue = Instance.new("BillboardGui")
+    local Chat1 = Instance.new("Frame")
+    local Sub = Instance.new("TextLabel")
+
+    -- Configure the BillboardGui
+    Dialogue.Active = true
+    Dialogue.Size = UDim2.new(15, 0, 15, 0)
+    Dialogue.StudsOffset = Vector3.new(0, 0, 2) -- Adjust the offset to make it visible
+    Dialogue.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    Dialogue.Name = "Dialogue"
+    Dialogue.Parent = humanoidRootPart
+
+    -- Configure the frame inside the BillboardGui
+    Chat1.AnchorPoint = Vector2.new(0.5, 0.5)
+    Chat1.BackgroundColor3 = Color3.new(1, 1, 1)
+    Chat1.BorderColor3 = Color3.new(0, 0, 0)
+    Chat1.BorderSizePixel = 2
+    Chat1.Position = UDim2.new(0.600000024, 0, -0.2, 0) -- Adjust the position for visibility
+    Chat1.Size = UDim2.new(0.100000001, 0, 0.200000003, 0)
+    Chat1.Name = "Chat1"
+    Chat1.BackgroundTransparency = 1
+    Chat1.Parent = Dialogue
+
+    -- Configure the TextLabel inside the frame
+    Sub.FontFace = Font.new("rbxassetid://12187375716", Enum.FontWeight.Bold, Enum.FontStyle.Italic)
+    Sub.Text = "COME"
+    Sub.TextColor3 = Color3.new(0, 0, 0)
+    Sub.TextScaled = true
+    Sub.TextSize = 14
+    Sub.TextWrapped = true
+    Sub.AnchorPoint = Vector2.new(0.5, 0.5)
+    Sub.BackgroundColor3 = Color3.new(1, 1, 1)
+    Sub.TextTransparency = 1
+    Sub.BorderColor3 = Color3.new(0, 0, 0)
+    Sub.BorderSizePixel = 0
+    Sub.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Sub.Size = UDim2.new(0.850000024, 0, 0.349999994, 0)
+    Sub.Name = "Sub"
+    Sub.Parent = Chat1
+    Sub.BackgroundTransparency = 1
+
+    -- Ensure cleanup of the BillboardGui elements after some time
+    game.Debris:AddItem(Chat1, 25)
+    game.Debris:AddItem(Sub, 25)
+
+    -- Define the tweenProperty function if missing
+    local function tweenProperty(object, properties, time)
+        local tweenInfo = TweenInfo.new(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        local tween = ts:Create(object, tweenInfo, properties)
+        tween:Play()
+        return tween
+    end
+
+    -- Animations for transparency and positioning
+    tweenProperty(Chat1, {BackgroundTransparency = 0}, 1)
+    tweenProperty(Sub, {TextTransparency = 0}, 1)
+    tweenProperty(Chat1, {Position = UDim2.new(0.6, 0, 0.4, 0)}, 1)
+    task.wait(2)
+    tweenProperty(Chat1, {BackgroundTransparency = 1}, 2)
+    tweenProperty(Sub, {TextTransparency = 1}, 2)
+end)()
+
+wait(1.75)
+
+local red4 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].EyeEmit:Clone()
+red4.Parent = game.Players.LocalPlayer.Character["Head"]
+    for _, child in ipairs(red4:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(20) -- Emit 20 particles
+        end
+        end
