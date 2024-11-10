@@ -562,6 +562,12 @@ task.spawn(function()
     end
 end) 
 
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://18869769700"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1
+
 local animationId = "18896229321"
 
 local player = game.Players.LocalPlayer
