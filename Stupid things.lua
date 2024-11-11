@@ -155,3 +155,113 @@ vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
 child:Emit(10)
         end
 end
+
+-- Tatsumaki
+
+-- Terrible tornado
+
+local vfx = game.ReplicatedStorage.Resources.TerribleTornado["Combine"].Combine.particles:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.TerribleTornado["Combine"].Combine.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.TerribleTornado["Maybe"].Maybe.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.TerribleTornado["CrackTime"].Brother.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+-- green light idk from what
+local vfx = game.ReplicatedStorage.Resources.GreenLights["Cam"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.GreenLights["Another"].Another.Ambient:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.GreenLights["Final"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.GreenLights["Effects"].Effects.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.GreenLights["TM3Slash"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.GreenLights["Swipey"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+-- Crushing push
+
+local vfx = game.ReplicatedStorage.Resources.CrushingPush["Proj"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.CrushingPush["SideBlast"].Part.Attachment:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
+
+local vfx = game.ReplicatedStorage.Resources.CrushingPush["SideBlast"].Part.GAG:Clone()
+vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(vfx:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+child:Emit(10)
+        end
+end
