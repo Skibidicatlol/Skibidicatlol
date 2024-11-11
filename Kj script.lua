@@ -1596,6 +1596,9 @@ if p.Character then
 end
 end)
 
+
+Wait()
+
    end)
 Section:NewButton("Broken phone Destroyer", "", function()
     
