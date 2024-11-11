@@ -3,9 +3,9 @@
 -- Here Your Toggle For Kavo Ui
  
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/Librarykavoui"))()
-local Window = Library.CreateLib("Tutorial", "DarkTheme")
-local Tab = Window:NewTab("Test")
-local Section = Tab:NewSection("😎")
+local Window = Library.CreateLib("Kj script by ", "DarkTheme")
+local Tab = Window:NewTab("Base moveset")
+local Section = Tab:NewSection("Base moves")
  
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ScreenGui"
