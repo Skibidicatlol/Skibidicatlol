@@ -1600,10 +1600,7 @@ end)
 Wait()
 
    end)
-Section:NewButton("Broken phone Destroyer", "", function()
-    
-        c:Destroy()
-end)
+
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits to Camerawomanfr by the spawn anim")
 local Section = Tab:NewSection("Credits to Kj hub for wall combo")
