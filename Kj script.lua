@@ -1364,6 +1364,80 @@ soundeffect:Play()
 soundeffect.Volume = 1.25
 
 end)
+local Tab = Window:NewTab("Dummy spawner")
+Section:NewButton("Spawn dummy", "Client", function()
+    
+local V_123 = game.Players.LocalPlayer
+local V_456 = V_123.Character or V_123.CharacterAdded:Wait()
+local V_789 = V_456:WaitForChild("HumanoidRootPart")
+
+local function V_101()
+    local V_112 = workspace:FindFirstChild("Live")
+    if not V_112 then return end
+
+    local V_131 = V_112:FindFirstChild("Weakest Dummy")
+    if not V_131 then return end
+
+    local V_415 = V_131:Clone()
+    V_415.Parent = workspace
+    
+    local V_516 = V_789.Position + (V_789.CFrame.LookVector * 2)
+    local V_718 = CFrame.new(V_516, V_789.Position)
+    V_415:SetPrimaryPartCFrame(V_718)
+
+    local V_720 = V_415:FindFirstChildOfClass("Humanoid")
+    if V_720 then
+        local V_819 = Instance.new("Animation")
+        V_819.AnimationId = "rbxassetid://1"
+        local V_920 = V_720:LoadAnimation(V_819)
+        V_920:Play()
+    end
+end
+
+V_101()
+
+local ws = game:GetService("Workspace")
+
+local function dpm()
+    local parts = {"FinalImpact", "slam", "hold", "FinalImpactHUGEignore"}
+    for _, n in pairs(parts) do
+        local p = ws:FindFirstChild(n)
+        if p then
+            p:Destroy()
+        end
+    end
+end
+
+local function main()
+    local m = ws:FindFirstChild("Weakest Dummy")
+    if m and m:IsA("Model") then
+        m:Destroy()
+    end
+    dpm()
+end
+end)
+Section:NewButton("Delete dummy", "", function()
+        local ws = game:GetService("Workspace")
+
+local function dpm()
+    local parts = {"FinalImpact", "slam", "hold", "FinalImpactHUGEignore"}
+    for _, n in pairs(parts) do
+        local p = ws:FindFirstChild(n)
+        if p then
+            p:Destroy()
+        end
+    end
+end
+
+local function main()
+    local m = ws:FindFirstChild("Weakest Dummy")
+    if m and m:IsA("Model") then
+        m:Destroy()
+    end
+    dpm()
+end
+main()
+    end)
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits to Camerawomanfr by the spawn anim")
 local Section = Tab:NewSection("Credits to Kj hub for wall combo")
