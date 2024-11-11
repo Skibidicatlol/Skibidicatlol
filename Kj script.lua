@@ -1468,6 +1468,143 @@ local function main()
 end
 main()
     end)
+local Tab = Window:NewTab("Model Spawner")
+Section:NewButton("Broken phone spawner", "Client", function()
+      local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://1"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1.25
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://1"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1
+
+local p = game.Players.LocalPlayer
+local s = function(c)
+    local r = game:GetService("ReplicatedStorage")
+    local t = r:FindFirstChild("Resources")
+    if t then
+        local u = t:FindFirstChild("le phone")
+        if u then
+            local v = u:Clone()
+            v.Parent = c
+-- Create and play the sound
+                
+
+
+            local w = c:FindFirstChild("RightHand") or c:FindFirstChild("Right Arm")
+            if w then
+                if not v.PrimaryPart then
+                    local basePart = v:FindFirstChildWhichIsA("BasePart")
+                    if basePart then
+                        v.PrimaryPart = basePart
+                    else
+                        return
+                    end
+                end
+                
+                local x = Instance.new("Weld")
+                x.Part0 = w
+                x.Part1 = v.PrimaryPart
+                x.C0 = CFrame.new(0, -1, 0)
+                x.Parent = w
+
+
+                v:SetPrimaryPartCFrame(w.CFrame * CFrame.new(0, -1, 0))
+
+
+                -- Play the animation
+                local anim = Instance.new("Animation")
+                anim.AnimationId = "rbxassetid://1"
+                
+                local animTrack = c.Humanoid:LoadAnimation(anim)
+                animTrack:Play()
+
+
+                
+                -- Delete the model after 1.25 seconds
+                delay(0, function()
+                    if v and v.Parent then
+                        v:Destroy()
+
+
+local p = game.Players.LocalPlayer
+local a = p.Character
+local x = game:GetService("ReplicatedStorage")
+local v = game:GetService("Workspace")
+
+
+local function r()
+    local s = x:FindFirstChild("Resources")
+    if not s then return end
+
+
+    local m = s:FindFirstChild("PhonePhysicsTest")
+    if not m then return end
+
+
+    local c = m:Clone()
+
+
+    local h = a:FindFirstChild("Head")
+    if not h then return end
+
+
+    local d = h.CFrame.LookVector
+    local o = h.Position + d * 0.15
+
+
+    c:SetPrimaryPartCFrame(CFrame.new(o))
+    c.Parent = v
+
+
+
+Wait(0.35)
+
+                -- Create and play the sound
+                local sound = Instance.new("Sound")
+                sound.SoundId = "rbxassetid://17325211957"
+                sound.Parent = Workspace
+                sound:Play()
+
+
+    wait(5)
+
+    if c and c.Parent then
+        
+    end
+end
+
+
+r()
+
+
+                    end
+                end)
+            end
+        end
+    end
+end
+
+
+p.CharacterAdded:Connect(s)
+if p.Character then
+    s(p.Character)
+end
+end)
+   end)
+Section:NewButton("Broken phone Destroyer", "", function()
+    if c and c.Parent then
+        c:Destroy()
+    end
+end
+
+
+r()
+end)
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits to Camerawomanfr by the spawn anim")
 local Section = Tab:NewSection("Credits to Kj hub for wall combo")
