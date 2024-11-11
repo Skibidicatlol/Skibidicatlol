@@ -1355,6 +1355,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Skibidicatlol/Skibidi
 
 end)
 local Tab = Window:NewTab("Others")
+local Section = Tab:NewSection("Yes, it spawns weakest dummy")
 local Section = Tab:NewSection("Other things")
 Section:NewButton("Kj awakening/theme", "Client", function()
 local soundeffect = Instance.new("Sound")
