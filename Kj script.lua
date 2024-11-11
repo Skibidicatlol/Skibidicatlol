@@ -3,7 +3,7 @@
 -- Here Your Toggle For Kavo Ui
  
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/Librarykavoui"))()
-local Window = Library.CreateLib("Kj script by ", "DarkTheme")
+local Window = Library.CreateLib("Kj script by cdolulumitogamer", "Midnight")
 local Tab = Window:NewTab("Base moveset")
 local Section = Tab:NewSection("Base moves")
  
