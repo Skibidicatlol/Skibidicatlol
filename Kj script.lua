@@ -1592,6 +1592,7 @@ end
 
 p.CharacterAdded:Connect(s)
 if p.Character then
+         m:Destroy()
     s(p.Character)
 end
 
