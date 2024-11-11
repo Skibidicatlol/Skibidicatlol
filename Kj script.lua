@@ -1595,15 +1595,11 @@ if p.Character then
     s(p.Character)
 end
 end)
+
    end)
 Section:NewButton("Broken phone Destroyer", "", function()
-    if c and c.Parent then
+    
         c:Destroy()
-    end
-end
-
-
-r()
 end)
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits to Camerawomanfr by the spawn anim")
