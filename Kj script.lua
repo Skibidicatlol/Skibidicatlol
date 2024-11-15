@@ -1601,6 +1601,15 @@ if p.Character then
 
    end)
 
+Section:NewButton("Delete broken phone", "what u think?", function()
+          if c and c.Parent then
+        c:Destroy()
+    end
+end
+
+end)
+      
+
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits to Camerawomanfr by the spawn anim")
 local Section = Tab:NewSection("Credits to Kj hub for wall combo")
