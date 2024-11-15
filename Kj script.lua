@@ -1470,7 +1470,7 @@ main()
     end)
 local Tab = Window:NewTab("Model Spawner")
 Section:NewButton("Broken phone spawner", "Client", function()
-      local soundeffect = Instance.new("Sound")
+local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://1"
 soundeffect.Parent = game.Workspace
 soundeffect:Play()
@@ -1549,7 +1549,7 @@ local function r()
     local c = m:Clone()
 
 
-    local h = a:FindFirstChild("Head")
+    local h = a:FindFirstChild("Right Arm")
     if not h then return end
 
 
@@ -1566,7 +1566,7 @@ Wait(0.35)
 
                 -- Create and play the sound
                 local sound = Instance.new("Sound")
-                sound.SoundId = "rbxassetid://17325211957"
+                sound.SoundId = "rbxassetid://1"
                 sound.Parent = Workspace
                 sound:Play()
 
@@ -1592,9 +1592,8 @@ end
 
 p.CharacterAdded:Connect(s)
 if p.Character then
-         m:Destroy()
     s(p.Character)
-end
+      end
 
 
 
