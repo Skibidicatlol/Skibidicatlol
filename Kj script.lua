@@ -1594,13 +1594,7 @@ end
    
 Section:NewButton("Make the broken phone dessapear", "Bruh", function()
 
-local Tab = Window:NewTab("Stop all sounds")
-local Section = Tab:NewSection("Well, the name already explains")
-Section:NewButton("stop all sounds.", "Bro", function()
-    if c and c.Parent then
-        c:Destroy()
-    end
-end
+c:Destroy()
 
 
          end)
