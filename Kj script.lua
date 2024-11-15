@@ -1469,6 +1469,7 @@ end
 main()
     end)
 local Tab = Window:NewTab("Model Spawner")
+
 Section:NewButton("Broken phone spawner", "Client", function()
 local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://1"
@@ -1600,15 +1601,6 @@ if p.Character then
 
 
    end)
-
-Section:NewButton("Delete broken phone", "", function()
-      
-          if c and c.Parent then
-        c:Destroy()
-    end
-end
-
-end)
       
 
 local Tab = Window:NewTab("Credits")
