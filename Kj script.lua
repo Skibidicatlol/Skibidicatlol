@@ -1596,7 +1596,7 @@ end
 
 local Tab = Window:NewTab("Stop all sounds")
 local Section = Tab:NewSection("Well, the name already explains")
-Section:NewButton("Stop all sounds.", "", function()
+Section:NewButton("Stop all sounds.", "Bro", function()
       -- Function to stop all sounds
 local function stopAllSounds()
     -- Get all descendants of the workspace
