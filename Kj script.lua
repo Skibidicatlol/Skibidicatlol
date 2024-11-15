@@ -1591,15 +1591,6 @@ r()
 end
 
 
-p.CharacterAdded:Connect(s)
-if p.Character then
-    s(p.Character)
-      end
-
-
-
-
-
    end)
 
 
