@@ -1599,7 +1599,8 @@ r()
 end
 
    end)
-   Section:NewButton("Make the broken phone dessapear", "Bruh", function()
+local Tab = Window:NewTab("Mute every sounds")
+   Section:NewButton("Mute every sounds", "Bruh", function()
       -- Function to stop all sounds
 local function stopAllSounds()
     -- Get all descendants of the workspace
