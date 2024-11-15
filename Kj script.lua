@@ -1468,6 +1468,14 @@ local function main()
 end
 main()
     end)
+
+Section:NewButton("Make the broken phone dessapear", "Bruh", function()
+
+c:Destroy()
+
+
+         end)
+
 local Tab = Window:NewTab("Model Spawner")
 
 Section:NewButton("Broken phone spawner", "Client", function()
@@ -1591,13 +1599,7 @@ r()
 end
 
    end)
-   
-Section:NewButton("Make the broken phone dessapear", "Bruh", function()
-
-c:Destroy()
-
-
-         end)
+   Section:NewButton("Make the broken phone dessapear", "Bruh", function()
       -- Function to stop all sounds
 local function stopAllSounds()
     -- Get all descendants of the workspace
