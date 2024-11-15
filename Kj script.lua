@@ -1606,7 +1606,6 @@ Section:NewButton("Broken phone deleter", ".", function()
           if c and c.Parent then
         c:Destroy()
     end
-end
 
 end)
 
