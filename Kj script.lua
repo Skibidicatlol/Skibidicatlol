@@ -1601,7 +1601,8 @@ if p.Character then
 
    end)
 
-Section:NewButton("Delete broken phone", "what u think?", function()
+Section:NewButton("Delete broken phone", "", function()
+      
           if c and c.Parent then
         c:Destroy()
     end
