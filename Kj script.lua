@@ -1393,7 +1393,6 @@ soundeffect.Volume = 1.25
 
 end)
 
-local Tab = Window:NewTab("Dummy spawner")
 local Section = Tab:NewSection("Yes, it spawns weakest dummy")
 Section:NewButton("Spawn dummy", "Client", function()
     
