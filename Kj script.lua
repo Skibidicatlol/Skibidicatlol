@@ -1476,7 +1476,6 @@ c:Destroy()
 
          end)
 
-local Tab = Window:NewTab("Model Spawner")
 
 Section:NewButton("Broken phone spawner", "Client", function()
 local soundeffect = Instance.new("Sound")
@@ -1599,7 +1598,6 @@ r()
 end
 
    end)
-local Tab = Window:NewTab("Mute every sounds")
    Section:NewButton("Mute every sounds", "Bruh", function()
       -- Function to stop all sounds
 local function stopAllSounds()
