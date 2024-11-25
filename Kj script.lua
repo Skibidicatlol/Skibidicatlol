@@ -396,6 +396,307 @@ end)
 Section:NewButton("Collateral Ruin", "Client", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/6GJBVRCT"))()
 end)
+Section:NewButton("Collateral Ruin Version 2", "Client", function()
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character and player.Character.Humanoid
+local humanoid = player.Character:WaitForChild("Humanoid")
+
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://17325254223"
+
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0"
+playAnim:Play()
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://17325303798"
+soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
+soundeffect:Play()
+soundeffect.Volume = 1
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://17344162331"
+soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
+soundeffect:Play()
+soundeffect.Volume = 1
+wait(0.9)
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+wait(0.1)
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnyweenyspinner.Attachment
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+wait(0.1)
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+wait(0.375)
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnyweenyspinner.Emit
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+local fine3 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2:Clone()
+fine3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(fine3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+
+local player = game.Workspace.Live["Weakest Dummy"]
+repeat wait() until player.Humanoid
+local dummyhumanoid = game.Workspace.Live["Weakest Dummy"]["Humanoid"]
+
+local anim2 = Instance.new("Animation")
+anim2.AnimationId = "rbxassetid://1"
+
+local playAnim2 = dummyhumanoid:LoadAnimation(anim2)
+playAnim2:Play()
+
+local r = game:GetService("ReplicatedStorage")
+local w = game:GetService("Workspace")
+local p = game.Players.LocalPlayer
+local c = p.Character or p.CharacterAdded:Wait()
+local hr = c:WaitForChild("HumanoidRootPart")
+local rs = game:GetService("RunService")
+
+local rf = r:WaitForChild("Resources")
+local k = rf:WaitForChild("KJEffects")
+local i1 = k:WaitForChild("ImpactEffect")
+local i2 = k:WaitForChild("ImpactEffect2")
+
+local function e(effect)
+    local c = effect:Clone()
+    c.Parent = w.Thrown
+    c.CFrame = hr.CFrame
+
+    for _, a in pairs(c:GetDescendants()) do
+        if a:IsA("ParticleEmitter") and a.Name == "Lightning" then
+            a:Destroy()
+        end
+    end
+
+    for _, a in pairs(c:GetDescendants()) do
+        if a:IsA("Attachment") then
+            for _, e in pairs(a:GetChildren()) do
+                if e:IsA("ParticleEmitter") then
+                    e.TimeScale = 0
+                    e:Emit(10)
+                    local s = e.Size
+                    e.Size = NumberSequence.new(0)
+                    task.delay(0.4, function()
+
+e.TimeScale = 1
+
+                    end)
+
+                    local t = 0
+                    local g = 5
+                    local dt = 1.5
+
+                    local conn
+                    conn = rs.RenderStepped:Connect(function()
+                        t = t + dt
+                        if t <= g then
+                            local n = s.Keypoints[1].Value * (t / g)
+                            e.Size = NumberSequence.new(n)
+                        else
+                            e.Size = s
+                            conn:Disconnect()
+                        end
+                    end)
+                end
+            end
+        end
+    end
+end
+
+e(i1)
+e(i2)
+
+task.spawn(function()
+     
+local R = game:GetService("RunService")
+local P = game.Players.LocalPlayer
+local C = workspace.CurrentCamera
+
+local M = 1
+local D = 0.3
+local RD = 0.3
+
+local OC = C.CFrame
+
+local function s(d, m, rd)
+    local st = tick()
+    local c
+
+    c = R.RenderStepped:Connect(function()
+        local e = tick() - st
+        if e < d then
+            local sx = math.random(-m, m)
+            local sy = math.random(-m, m)
+            C.CFrame = C.CFrame * CFrame.Angles(math.rad(sx), math.rad(sy), 0)
+        else
+            c:Disconnect()
+            wait(rd)
+        end
+    end)
+end
+
+s(D, M, RD)
+
+    end)
+local collateral6 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo:Clone()
+collateral6.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral6:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral7 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo:Clone()
+collateral7.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral7:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+
+local collateral8 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo:Clone()
+collateral8.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral8:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+wait(0.25)
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+wait(0.1)
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnyweenyspinner.Attachment
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+
+local Test = game:GetService("ReplicatedStorage").Resources.KJEffects.spinnerthing.spinningparty
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(15)
+        child.Enabled = false
+    end
+end
+wait(0.25)
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://17325675161" -- second
+soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
+soundeffect:Play()
+soundeffect.Volume = 1
+
+local collateral4 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+collateral4.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral4:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(20) -- Emit 20 particles
+        end
+    end
+local collateral5 = game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2:Clone()
+collateral5.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral5:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(20) -- Emit 20 particles
+        end
+    end
+local collateral2 = game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit:Clone()
+collateral2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral2:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+      end
+      
+end)
 Section:NewButton("Wall Combo", "Client", function()
 local k = Instance.new("Sound", game.Players.LocalPlayer.Character.Torso)
 k.Name = "ku"
