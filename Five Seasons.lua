@@ -880,7 +880,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/EFiFYBmW"))()
         
         
         humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position.X, 600.716, humanoidRootPart.Position.Z)
-		wait(2.75)
+		wait(4.75)
 		local player = game.Players.LocalPlayer
         local character = player.Character
         local humanoid = character:WaitForChild("Humanoid")
@@ -900,7 +900,7 @@ playAnim.TimePosition = 4.2
         
         
         character["Left Arm"].ArmFX:Destroy()
-        wait(4.75)
+        wait(2.75)
 		playAnim:Stop()
         character.HumanoidRootPart.Anchored = false
             end)
