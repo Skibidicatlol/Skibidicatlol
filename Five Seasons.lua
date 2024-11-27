@@ -892,6 +892,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/EFiFYBmW"))()
         Animation.AnimationId = "rbxassetid://0"
         playAnim:Play()
 playAnim.TimePosition = 4.2
+	wait()
 		character.HumanoidRootPart.Anchored = true
         wait(6.75)
 		
