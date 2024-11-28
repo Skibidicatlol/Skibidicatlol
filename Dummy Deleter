@@ -1,0 +1,20 @@
+local ws = game:GetService("Workspace")
+
+local function dpm()
+    local parts = {"FinalImpact", "slam", "hold", "FinalImpactHUGEignore"}
+    for _, n in pairs(parts) do
+        local p = ws:FindFirstChild(n)
+        if p then
+            p:Destroy()
+        end
+    end
+end
+
+local function main()
+    local m = ws:FindFirstChild("Weakest Dummy")
+    if m and m:IsA("Model") then
+        m:Destroy()
+    end
+    dpm()
+end
+main()
