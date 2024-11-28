@@ -21,4 +21,3 @@ boom1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
             child:Emit(50) -- Emit 20 particles
         end
     end
-end)
