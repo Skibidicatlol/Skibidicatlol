@@ -1,0 +1,229 @@
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://16944265635"
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+AnimAnim.AnimationId = "rbxassetid://0" -- Reset animation ID
+Anim:Play()
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://16944636115"
+soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
+soundeffect:Play()
+soundeffect.Volume = 2
+
+
+wait(0.4)
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://16944654440"
+soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
+soundeffect:Play()
+soundeffect.Volume = 2
+Anim:Stop()
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://16944345619"
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+AnimAnim.AnimationId = "rbxassetid://0" -- Reset animation ID
+Anim:Play()
+
+wait(0.025)
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local camera = workspace.CurrentCamera
+
+local speed = 0.001 -- How fast the health reduces (seconds between each health reduction)
+local duration = 0.001 -- Total time to keep reducing health (in seconds)
+local damageAmount = 3 -- The amount of health to reduce on each hit
+
+
+local function updateHealthText(dummyHumanoid)
+    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
+    if billboardGui then
+        local textLabel = billboardGui:FindFirstChild("TextLabel")
+        if textLabel then
+            local currentHealth = dummyHumanoid.Health
+            local maxHealth = dummyHumanoid.MaxHealth
+            local healthPercentage = math.floor((currentHealth / maxHealth) * 100)
+            textLabel.Text = healthPercentage .. "%"
+            textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+        end
+    end
+end
+local function revertTextColor(dummyHumanoid)
+    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
+    if billboardGui then
+        local textLabel = billboardGui:FindFirstChild("TextLabel")
+        if textLabel then
+            textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        end
+    end
+end
+local function resetHealthIfZero(dummyHumanoid)
+    if dummyHumanoid.Health <= 0 then
+        dummyHumanoid.Health = dummyHumanoid.MaxHealth
+        updateHealthText(dummyHumanoid)
+    end
+end
+local function checkForNearbyCharacters()
+    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
+        if targetCharacter:IsA("Model") and targetCharacter:FindFirstChild("Humanoid") then
+            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
+            local distance = (targetCharacter.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude
+            if targetCharacter ~= character and distance <= 10 then
+                targetHumanoid.Health = math.max(0, targetHumanoid.Health - damageAmount)
+                if targetHumanoid.Health == 0 then
+                     targetHumanoid.Health = targetHumanoid.MaxHealth
+                end
+                if targetCharacter.Name == "Weakest Dummy" then
+                    updateHealthText(targetHumanoid)
+                    resetHealthIfZero(targetHumanoid)
+                end
+            end
+        end
+    end
+end
+local function Damage()
+    local startTime = tick()
+    while tick() - startTime < duration do
+        checkForNearbyCharacters()
+        wait(speed)
+    end
+    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
+        if targetCharacter:IsA("Model") and targetCharacter.Name == "Weakest Dummy" and targetCharacter:FindFirstChild("Humanoid") then
+            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
+            revertTextColor(targetHumanoid)
+        end
+    end
+end
+Damage()
+wait(0.25)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local camera = workspace.CurrentCamera
+
+local speed = 0.001 -- How fast the health reduces (seconds between each health reduction)
+local duration = 0.001 -- Total time to keep reducing health (in seconds)
+local damageAmount = 5 -- The amount of health to reduce on each hit
+
+
+local function updateHealthText(dummyHumanoid)
+    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
+    if billboardGui then
+        local textLabel = billboardGui:FindFirstChild("TextLabel")
+        if textLabel then
+            local currentHealth = dummyHumanoid.Health
+            local maxHealth = dummyHumanoid.MaxHealth
+            local healthPercentage = math.floor((currentHealth / maxHealth) * 100)
+            textLabel.Text = healthPercentage .. "%"
+            textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+        end
+    end
+end
+local function revertTextColor(dummyHumanoid)
+    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
+    if billboardGui then
+        local textLabel = billboardGui:FindFirstChild("TextLabel")
+        if textLabel then
+            textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        end
+    end
+end
+local function resetHealthIfZero(dummyHumanoid)
+    if dummyHumanoid.Health <= 0 then
+        dummyHumanoid.Health = dummyHumanoid.MaxHealth
+        updateHealthText(dummyHumanoid)
+    end
+end
+local function checkForNearbyCharacters()
+    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
+        if targetCharacter:IsA("Model") and targetCharacter:FindFirstChild("Humanoid") then
+            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
+            local distance = (targetCharacter.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude
+            if targetCharacter ~= character and distance <= 10 then
+                targetHumanoid.Health = math.max(0, targetHumanoid.Health - damageAmount)
+                if targetHumanoid.Health == 0 then
+                     targetHumanoid.Health = targetHumanoid.MaxHealth
+                end
+                if targetCharacter.Name == "Weakest Dummy" then
+                    updateHealthText(targetHumanoid)
+                    resetHealthIfZero(targetHumanoid)
+                end
+            end
+        end
+    end
+end
+local function Damage()
+    local startTime = tick()
+    while tick() - startTime < duration do
+        checkForNearbyCharacters()
+        wait(speed)
+    end
+    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
+        if targetCharacter:IsA("Model") and targetCharacter.Name == "Weakest Dummy" and targetCharacter:FindFirstChild("Humanoid") then
+            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
+            revertTextColor(targetHumanoid)
+        end
+    end
+end
+Damage()
+wait(0.0005)
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["LegSweepHit"].Hit:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(5) -- Emit 20 particles
+        end
+    end
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["LegSweepHit"].Hit:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(5) -- Emit 20 particles
+        end
+    end
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["LegSweepHit"].Hit:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(5) -- Emit 20 particles
+        end
+    end
+local hit1 = game.ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
+hit1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(hit1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local hit1 = game.ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
+hit1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(hit1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+
+local hit1 = game.ReplicatedStorage.Resources.KJEffects["lastkick"].Attachment:Clone()
+hit1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(hit1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+
+local player = game.Workspace.Live["Weakest Dummy"]
+repeat wait() until player.Humanoid
+local dummyhumanoid = game.Workspace.Live["Weakest Dummy"]["Humanoid"]
+
+local anim2 = Instance.new("Animation")
+anim2.AnimationId = "rbxassetid://1"
+
+local playAnim2 = dummyhumanoid:LoadAnimation(anim2)
+playAnim2:Play()
