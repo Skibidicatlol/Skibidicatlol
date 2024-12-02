@@ -139,10 +139,10 @@ soundeffect.SoundId = "rbxassetid://17293944193"
 soundeffect.Parent = game.Workspace
 soundeffect:Play()
 soundeffect.Volume = 1
-wait(3)
+
 
 task.spawn(function()
-wait()
+wait(3)
 local function GetGitSound(GithubSnd,SoundName)
                 local url=GithubSnd
                 if not isfile(SoundName..".mp3") then
