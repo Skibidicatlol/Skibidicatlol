@@ -1,5 +1,5 @@
 task.spawn(function()
-wait(3)
+wait(4.5)
 local function GetGitSound(GithubSnd,SoundName)
                 local url=GithubSnd
                 if not isfile(SoundName..".mp3") then
