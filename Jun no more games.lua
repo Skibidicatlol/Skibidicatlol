@@ -104,26 +104,7 @@ asyncWait(5, function() --change 5 to the end of yo cutscene or smth
     Chat.Enabled = true
 end)
 
-task.spawn(function()
-wait()
-local function GetGitSound(GithubSnd,SoundName)
-                local url=GithubSnd
-                if not isfile(SoundName..".mp3") then
-                    writefile(SoundName..".mp3", game:HttpGet(url))
-                end
-                local sound=Instance.new("Sound")
-                sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
-                return sound
-            end
-   local Clock = GetGitSound("https://github.com/Skibidicatlol/Skibidicatlol/blob/main/Nomoregames.mp3?raw=true","No_More_Games")
 
-                Clock.Parent = Workspace
-
-                Clock.Volume = 1
-                Clock.TimePosition = 0
-
-                Clock:Play()
-end)
 
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
@@ -158,6 +139,28 @@ soundeffect.SoundId = "rbxassetid://17293944193"
 soundeffect.Parent = game.Workspace
 soundeffect:Play()
 soundeffect.Volume = 1
+
+
+task.spawn(function()
+wait()
+local function GetGitSound(GithubSnd,SoundName)
+                local url=GithubSnd
+                if not isfile(SoundName..".mp3") then
+                    writefile(SoundName..".mp3", game:HttpGet(url))
+                end
+                local sound=Instance.new("Sound")
+                sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+                return sound
+            end
+   local Clock = GetGitSound("https://github.com/Skibidicatlol/Skibidicatlol/blob/main/Nomoregames.mp3?raw=true","No_More_Games")
+
+                Clock.Parent = Workspace
+
+                Clock.Volume = 1
+                Clock.TimePosition = 0
+
+                Clock:Play()
+end)
 
 local function cycleImages()
     for i, imageId in ipairs(imageIds) do
