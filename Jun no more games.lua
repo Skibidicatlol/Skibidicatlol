@@ -659,9 +659,6 @@ task.wait(1) --how long the final image is shown
 screenGui:Destroy()
 
 
-wait(0.4)
-
-
 
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
