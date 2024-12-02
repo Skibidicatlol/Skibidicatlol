@@ -699,59 +699,11 @@ animationTrack:Stop()
 task.wait(1) --how long the final image is shown
 screenGui:Destroy()
 
-wait(0.5)
-soundeffect:stop()
-
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://3755636438"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
-
-local animationId = "16552234590"
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://0" .. animationId
-local animationTrack = humanoid:LoadAnimation(animation)
-
-animationTrack:play()
-
-wait(1.5)
-
-animationTrack:Stop()
-
-
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://3755636438"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
-
-local animationId = "16552234590"
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://0" .. animationId
-local animationTrack = humanoid:LoadAnimation(animation)
-
-animationTrack:play()
 
 wait(0.4)
 
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://13501856971"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
+
+
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local EmitBatch1 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch1:Clone()
@@ -886,7 +838,7 @@ end
 
 wait(0.4)
 
-animationTrack:Stop()
+
 
 wait(2)
 w:Destroy()
