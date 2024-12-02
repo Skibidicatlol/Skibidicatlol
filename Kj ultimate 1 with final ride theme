@@ -32,18 +32,7 @@ local function GetGitSound(GithubSnd,SoundName)
 end)
 wait(1)
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch1 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch1:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
 
-EmitBatch1.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch1:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        child:Emit(50) -- Emit 1 particle
-    end
-end
 
 local p = game.Players.LocalPlayer
 local Humanoid = p.Character:WaitForChild("Humanoid")
@@ -69,6 +58,19 @@ sound.Parent = workspace
 
 -- Play the sound
 sound:Play()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local EmitBatch1 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch1:Clone()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+EmitBatch1.Parent = character:WaitForChild("HumanoidRootPart")
+
+for _, child in ipairs(EmitBatch1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(50) -- Emit 1 particle
+    end
+end
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local EmitBatch3 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch3:Clone()
 local player = game.Players.LocalPlayer
