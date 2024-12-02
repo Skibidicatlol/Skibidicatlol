@@ -1,3 +1,24 @@
+task.spawn(function()
+wait()
+local function GetGitSound(GithubSnd,SoundName)
+                local url=GithubSnd
+                if not isfile(SoundName..".mp3") then
+                    writefile(SoundName..".mp3", game:HttpGet(url))
+                end
+                local sound=Instance.new("Sound")
+                sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+                return sound
+            end
+   local Clock = GetGitSound("https://github.com/Skibidicatlol/Skibidicatlol/blob/main/Nomoregames.mp3?raw=true","No_More_Games")
+
+                Clock.Parent = Workspace
+
+                Clock.Volume = 1
+                Clock.TimePosition = 0
+
+                Clock:Play()
+end)
+
 local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://18440861190"
 soundeffect.Parent = game.Workspace
