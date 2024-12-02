@@ -139,7 +139,7 @@ soundeffect.SoundId = "rbxassetid://17293944193"
 soundeffect.Parent = game.Workspace
 soundeffect:Play()
 soundeffect.Volume = 1
-
+wait(3)
 
 task.spawn(function()
 wait()
