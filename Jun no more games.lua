@@ -441,25 +441,8 @@ Wait(0.5)
 
 animationTrack:Stop()
 
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://3755636438"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
 
-local animationId = "13532604085"
 
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://0" .. animationId
-local animationTrack = humanoid:LoadAnimation(animation)
-
-animationTrack:play()
-
-wait(0.5)
 
 local r = game:GetService("RunService")
 local t = game:GetService("TweenService")
@@ -502,52 +485,6 @@ if d then
     s(d)
 end
 
-animationTrack:Stop()
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://3755636438"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
-
-local animationId = "13532562418"
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://0" .. animationId
-local animationTrack = humanoid:LoadAnimation(animation)
-
-animationTrack:play()
-
-Wait(0.5)
-
-animationTrack:Stop()
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://3755636438"
-soundeffect.Parent = game.Workspace
-soundeffect:Play()
-soundeffect.Volume = 2.5
-
-local animationId = "13532600125"
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://0" .. animationId
-local animationTrack = humanoid:LoadAnimation(animation)
-
-animationTrack:play()
-
-Wait(0.5)
-
-animationTrack:Stop()
-
 local soundeffect = Instance.new("Sound")
 soundeffect.SoundId = "rbxassetid://3755636438"
 soundeffect.Parent = game.Workspace
@@ -565,10 +502,10 @@ animation.AnimationId = "rbxassetid://0" .. animationId
 local animationTrack = humanoid:LoadAnimation(animation)
 
 animationTrack:play()
-
 wait(0.5)
-
 animationTrack:Stop()
+
+
 
 task.spawn(function()
     local player = game.Players.LocalPlayer
