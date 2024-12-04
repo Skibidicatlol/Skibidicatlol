@@ -618,7 +618,7 @@ cycleImages()
 
 animationTrack:Stop()
 
-task.wait(1) --how long the final image is shown
+task.wait(2.25) --how long the final image is shown
 screenGui:Destroy()
 
 
