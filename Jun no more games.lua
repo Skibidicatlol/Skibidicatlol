@@ -546,7 +546,7 @@ task.spawn(function()
     end
 end) 
 
-wait(0.5)
+wait(3)
 local animationId = "16552234590"
 
 local player = game.Players.LocalPlayer
@@ -558,7 +558,7 @@ animation.AnimationId = "rbxassetid://0" .. animationId
 local animationTrack = humanoid:LoadAnimation(animation)
 
 animationTrack:play()
-wait(0.5)
+wait(0.75)
 local animationId = "16552234590"
 
 local player = game.Players.LocalPlayer
