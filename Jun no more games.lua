@@ -546,6 +546,31 @@ task.spawn(function()
     end
 end) 
 
+wait(0.5)
+local animationId = "16552234590"
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://0" .. animationId
+local animationTrack = humanoid:LoadAnimation(animation)
+
+animationTrack:play()
+wait(0.5)
+local animationId = "16552234590"
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://0" .. animationId
+local animationTrack = humanoid:LoadAnimation(animation)
+
+animationTrack:play()
+
 wait(0.25)
 
 local soundeffect = Instance.new("Sound")
