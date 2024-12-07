@@ -1,5 +1,12 @@
 
-        
+        local Player = game.Players.LocalPlayer
+local Character = Player.Character
+local AnimHandler = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProudNamed/SuperLightning/refs/heads/main/AnimModule/MainModule"))()
+local Walk = game:GetObjects("rbxassetid://18462892217")[1]
+Walk.Parent = Character
+local WalkAnim = AnimHandler.new(Character,Walk)
+WalkAnim:Play() 
+
    
        
         local Players = game:GetService("Players")
@@ -52,7 +59,7 @@
         local NOIMTELEPORTINGHELPPPPP = FiveEffects.CharFX.TP:Clone()
         local animator = humanoid:WaitForChild("Animator")
         local Animation = Instance.new("Animation")
-        Animation.AnimationId = "rbxassetid://18462892217"
+        Animation.AnimationId = "rbxassetid://1"
             
         local playAnim = humanoid:LoadAnimation(Animation)
         Animation.AnimationId = "rbxassetid://0"
