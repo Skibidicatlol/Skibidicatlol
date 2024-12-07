@@ -59,7 +59,7 @@ WalkAnim:Play()
         local NOIMTELEPORTINGHELPPPPP = FiveEffects.CharFX.TP:Clone()
         local animator = humanoid:WaitForChild("Animator")
         local Animation = Instance.new("Animation")
-        Animation.AnimationId = "rbxassetid://1"
+        Animation.AnimationId = "rbxassetid://0"
             
         local playAnim = humanoid:LoadAnimation(Animation)
         Animation.AnimationId = "rbxassetid://0"
