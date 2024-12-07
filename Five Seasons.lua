@@ -1,12 +1,5 @@
 
-        local Player = game.Players.LocalPlayer
-local Character = Player.Character
-local AnimHandler = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProudNamed/SuperLightning/refs/heads/main/AnimModule/MainModule"))()
-local Walk = game:GetObjects("rbxassetid://18462892217")[1]
-Walk.Parent = Character
-local WalkAnim = AnimHandler.new(Character,Walk)
-WalkAnim:Play() 
-
+        
    
        
         local Players = game:GetService("Players")
