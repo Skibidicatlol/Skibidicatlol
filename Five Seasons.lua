@@ -58,7 +58,7 @@ local Walk = game:GetObjects("rbxassetid://18462892217")[1]
 Walk.Parent = Character
 local WalkAnim = AnimHandler.new(Character,Walk)
 WalkAnim:Play() 
-spawn:function()
+spawn(function()
             wait(7.5)
             local SoundTP = Instance.new("Sound", character.Torso)
             SoundTP.SoundId = "rbxassetid://18461671633"
