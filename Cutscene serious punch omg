@@ -1,0 +1,195 @@
+
+
+local Player = game:GetService("Players").LocalPlayer
+local CollectionService = game:GetService("CollectionService")
+local tableofhiddenuis = {}
+-- i couldnt find setcore so i made my own
+shared.SetCore = function(v6, v7, v8)
+
+	for i, v in pairs(Player:WaitForChild("PlayerGui"):GetChildren()) do
+		if v:IsA("ScreenGui") then
+			task.spawn(function()
+				if table.find(tableofhiddenuis, v) then
+					v.Enabled = v6
+					if v6 == false then
+						tableofhiddenuis[v] = nil
+					end
+
+					return
+				end
+				if v.Enabled then
+					v.Enabled = v6
+					table.insert(tableofhiddenuis, v)
+				end
+			end)
+		end
+	end
+	return
+end;
+
+local function v534(v525, v526, v527)
+	local v528 = 1 / (v526 or 60);
+	local v529 = 0;
+	local v530 = 0;
+	local v531 = true;
+	local function v532()
+		v531 = false;
+	end;
+	local function v533()
+		while v531 do
+			v529 = v529 + v530;
+			while v528 <= v529 do
+				v525(v532);
+				v529 = v529 - v528;
+				if not v531 then
+					break;
+				end;
+			end;
+			v530 = game:GetService("RunService").RenderStepped:wait();
+		end;
+	end;
+	if not v527 then
+		task.spawn(v533);
+	else
+		v533();
+	end;
+	return v532;
+end;
+shared.loop = v534;
+
+local function v240(v234)
+	local l_Sound_0 = Instance.new("Sound");
+	l_Sound_0.SoundGroup = game:GetService('SoundService').Sounds;
+	CollectionService:AddTag(l_Sound_0, "NewSound");
+	local v236 = nil;
+	local v237 = nil;
+	v237 = l_Sound_0.Ended:connect(function()
+		if l_Sound_0 then
+			l_Sound_0:Destroy();
+		end;
+		if v236 then
+			v236:Destroy();
+		end;
+		return v237:Disconnect();
+	end);
+	if not v234.RollOffMaxDistance then
+		v234.RollOffMaxDistance = 300;
+	end;
+	if v234.CFrame then
+		v236 = Instance.new("Attachment");
+		v236.Parent = workspace.Terrain;
+		v236.WorldCFrame = v234.CFrame;
+		v234.Parent = v236;
+	end;
+	v234.CFrame = nil;
+	for v238, v239 in pairs(v234) do
+		l_Sound_0[v238] = v239;
+	end;
+	return l_Sound_0, v236;
+end;
+shared.sfx = v240;
+
+local Camera = {game:GetService("InsertService"):LoadLocalAsset('rbxassetid://73629316773618')}
+Camera = Camera[1]
+Camera.Parent = Player.Character
+Camera.camerarootpart.CFrame = Player.Character.HumanoidRootPart.CFrame
+
+local CameraAnimation = Instance.new("Animation")
+CameraAnimation.AnimationId = "rbxassetid://12982369223"
+local CameraAnimationTrack : AnimationTrack = Camera.AnimationController.Animator:LoadAnimation(CameraAnimation)
+CameraAnimationTrack:Play(0)
+
+task.spawn(function()
+
+	local l_Character_4 = Player.Character
+	local v938 = {
+		Char = l_Character_4,
+		Follow = Camera.camera 
+
+	}
+	if v938.Char == l_Character_4 then
+		local v14574 = {};
+		for _, v14576 in pairs(game.ReplicatedStorage.Resources.ImpactFrame:GetChildren()) do
+			local v14577 = v14576:Clone();
+			v14577.Visible = true;
+			v14577.Size = UDim2.new(0, 1, 0, 1);
+			v14577.Position = UDim2.new(0, 0, 0, 0);
+			v14577.Parent = Player.PlayerGui.ShiftLock;
+			table.insert(v14574, v14577);
+		end;
+		
+		local l_v14574_0 = v14574 --[[ copy: 4 -> 76 ]];
+		task.delay(10, function() --[[ Line: 28708 ]]
+			for _, v14580 in pairs(l_v14574_0) do
+				v14580:Destroy();
+			end;
+		end);
+	end;
+	task.delay(0, function() --[[ Line: 28715 ]]
+		local v14581 = shared.sfx({
+			SoundId = "", 
+			Parent = workspace, 
+			Volume = 3
+		});
+		CollectionService:AddTag(v14581, "UltimateMusic");
+		v14581:Play();
+		task.delay(5.9, function() --[[ Line: 28723 ]]
+			v14581.Volume = 7;
+			game:GetService("TweenService"):Create(v14581, TweenInfo.new(6, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+				Volume = 3
+			}):Play();
+		end);
+	end);
+	workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable;
+	shared.SetCore(false);
+	local l_CurrentCamera_22 = workspace.CurrentCamera;
+	local l_Follow_0 = v938.Follow;
+	local v14584 = nil;
+	for _, v14586 in pairs(l_Follow_0.Parent.AnimationController:GetPlayingAnimationTracks()) do
+		if v14586.Animation.AnimationId == "rbxassetid://12982369223" then
+			v14584 = v14586;
+		end;
+	end;
+	local v14587 = tick();
+	local v14588 = nil;
+	local v14589 = nil;
+	do
+		local l_v14584_0, l_v14588_0, l_v14589_0 = v14584, v14588, v14589;
+		l_v14589_0 = shared.loop(function() --[[ Line: 28744 ]]
+			if l_Follow_0 and l_Follow_0.Parent and l_CurrentCamera_22.CFrame and v938.Char.Parent then
+				if l_v14584_0 and not l_v14588_0 and l_v14584_0.TimePosition >= 5.85 and l_v14584_0.TimePosition <= 5.89 then
+					l_v14588_0 = true;
+					task.spawn(function() --[[ Line: 28757 ]]
+						local v14593 = game.ReplicatedStorage.Resources.ImpactFrame:Clone();
+						v14593.Parent = Player.PlayerGui;
+						v14593[1].ZIndex = 2;
+						v14593[1].Visible = true;
+						task.wait(0.046);
+						v14593[2].ZIndex = 3;
+						v14593[2].Visible = true;
+						task.wait(0.046);
+						v14593[3].ZIndex = 4;
+						v14593[3].Visible = true;
+						task.wait(0.046);
+						l_Follow_0:Destroy();
+						v14593:Destroy();
+					end);
+				end;
+				if tick() - v14587 > 1 then
+					l_CurrentCamera_22.CFrame = l_Follow_0.CFrame;
+					return;
+				else
+					l_CurrentCamera_22.CFrame = l_CurrentCamera_22.CFrame:lerp(l_Follow_0.CFrame, 0.07);
+					return;
+				end;
+			else
+				local l_CFrame_58 = workspace.CurrentCamera.CFrame;
+				workspace.CurrentCamera.CameraType = Enum.CameraType.Custom;
+				workspace.CurrentCamera.CFrame = l_CFrame_58;
+				shared.SetCore(true);
+				return l_v14589_0();
+			end;
+		end, 90);
+	end;
+
+end)
