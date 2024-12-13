@@ -1,0 +1,57 @@
+local NPC = game.Workspace.Live["Weakest Dummy"] -- Get the NPC
+local AnimHandler = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProudNamed/SuperLightning/refs/heads/main/AnimModule/MainModule"))()
+local Walk = game:GetObjects("rbxassetid://74378558038481")[1] -- Load the animation
+Walk.Parent = NPC -- Parent the animation to the NPC
+local WalkAnim = AnimHandler.new(NPC, Walk) -- Initialize the animation handler
+
+WalkAnim:Play() -- Play the animation
+
+
+local Player = game.Players.LocalPlayer
+local Character = Player.Character
+local AnimHandler = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProudNamed/SuperLightning/refs/heads/main/AnimModule/MainModule"))()
+local Walk = game:GetObjects("rbxassetid://84307708849658")[1]
+Walk.Parent = Character
+local WalkAnim = AnimHandler.new(Character,Walk) 
+WalkAnim:Play()
+WalkAnim.TimePosition = 0.25
+task.spawn(function()
+wait()
+local function GetGitSound(GithubSnd,SoundName)
+                local url=GithubSnd
+                if not isfile(SoundName..".mp3") then
+                    writefile(SoundName..".mp3", game:HttpGet(url))
+                end
+                local sound=Instance.new("Sound")
+                sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+                return sound
+            end
+   local Clock = GetGitSound("https://github.com/Skibidicatlol/Skibidicatlol/blob/main/Nomoregames.mp3?raw=true","No_More_Games")
+
+                Clock.Parent = Workspace
+
+                Clock.Volume = 1
+                Clock.TimePosition = 0.5
+
+                Clock:Play()
+end)
+
+local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()  -- Ensure character is loaded
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")  -- Get the player's HumanoidRootPart
+local NPC = game.Workspace.Live["Weakest Dummy"]  -- Get the NPC
+local Duration = 20  -- Time in seconds for how long the loop should run
+local StartTime = tick()  -- Get the current time
+
+while tick() - StartTime < Duration do
+    local NPCPosition = NPC.HumanoidRootPart.Position  -- Get the NPC's position
+    local NPCLookDirection = NPC.HumanoidRootPart.CFrame.LookVector  -- Get the NPC's facing direction
+
+    -- Calculate the position in front of the NPC (slightly adjusted so the player doesn't clip into the NPC)
+    local FrontPosition = NPCPosition + (NPCLookDirection * 2.85)  -- Teleport 5 studs in front of the NPC
+
+    -- Teleport the player to that position and make them look in the opposite direction
+    HumanoidRootPart.CFrame = CFrame.new(FrontPosition, FrontPosition - NPCLookDirection)  -- Player faces the opposite direction of the NPC
+
+     wait(0.00001) -- Wait for 1 second before repeating
+end
