@@ -1,5 +1,113 @@
 
 spawn(function()
+wait(2.5125)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+
+-- Path to the Weakest Dummy and the MeshPart DomainSphere inside UFW
+local weakestDummyPath = Workspace:WaitForChild("Live"):WaitForChild("Weakest Dummy")
+local domainSpherePath = ReplicatedStorage:WaitForChild("Resources"):WaitForChild("UFW"):WaitForChild("DomainSphere")
+
+-- Function to clone DomainSphere and spawn it at the Weakest Dummy's position
+local function spawnDomainSphereAtWeakestDummy()
+    -- Check if Weakest Dummy exists
+    local weakestDummy = weakestDummyPath
+    if not weakestDummy then
+        warn("Weakest Dummy not found.")
+        return
+    end
+
+    -- Check if DomainSphere exists in UFW
+    local domainSphere = domainSpherePath
+    if not domainSphere then
+        warn("DomainSphere not found in UFW.")
+        return
+    end
+
+    -- Clone the DomainSphere
+    local domainSphereClone = domainSphere:Clone()
+    domainSphereClone.Parent = Workspace
+
+    -- Get the CFrame of the Weakest Dummy's HumanoidRootPart
+    local humanoidRootPart = weakestDummy:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        warn("HumanoidRootPart not found for Weakest Dummy.")
+        return
+    end
+
+    -- Position the cloned DomainSphere using the Weakest Dummy's CFrame, but use its own CFrame for orientation
+    domainSphereClone.CFrame = humanoidRootPart.CFrame
+
+    -- Set the transparency to 0 (fully visible)
+    domainSphereClone.Transparency = 0
+
+    -- Optional: If you want to scale the DomainSphere to match the Weakest Dummy's size, adjust here
+    -- domainSphereClone.Size = Vector3.new(10, 10, 10)  -- Adjust size if needed
+
+    -- Destroy the model after a delay (e.g., 5 seconds)
+    local destroyDelay = 5  -- Time in seconds before the model is destroyed
+    task.delay(destroyDelay, function()
+        if domainSphereClone and domainSphereClone.Parent then
+            domainSphereClone:Destroy()
+        end
+    end)
+end
+
+-- Call the function to spawn the DomainSphere
+spawnDomainSphereAtWeakestDummy()
+
+local mapFolderName = "Map" -- The name of the folder containing the map parts
+local hideDuration = 10      -- Time in seconds to keep the map hidden
+
+-- Locate the folder
+local mapFolder = workspace:FindFirstChild(mapFolderName)
+if not mapFolder then
+    warn("Folder named '" .. mapFolderName .. "' not found in workspace.")
+    return
+end
+
+-- Table to store original transparency values
+local originalTransparency = {}
+
+-- Function to hide the map
+local function hideMap()
+    for _, part in ipairs(mapFolder:GetDescendants()) do
+        if part:IsA("BasePart") then
+            -- Save original transparency if not already saved
+            if originalTransparency[part] == nil then
+                originalTransparency[part] = part.Transparency
+            end
+            part.Transparency = 1     -- Make the part invisible
+            part.CanCollide = true   -- Ensure parts remain collidable
+        elseif part:IsA("Decal") or part:IsA("SurfaceGui") then
+            part.Enabled = false     -- Hide decals and GUI elements
+        end
+    end
+end
+
+-- Function to show the map
+local function showMap()
+    for _, part in ipairs(mapFolder:GetDescendants()) do
+        if part:IsA("BasePart") then
+            -- Restore original transparency
+            part.Transparency = originalTransparency[part] or 0
+        elseif part:IsA("Decal") or part:IsA("SurfaceGui") then
+            part.Enabled = true      -- Re-enable decals and GUI elements
+        end
+    end
+    -- Clear the stored transparency data to free memory
+    originalTransparency = {}
+end
+
+-- Main logic
+hideMap()                          -- Hide the map
+task.wait(hideDuration)            -- Wait for the specified duration
+showMap()                          -- Show the map again 
+
+
+end)
+spawn(function()
 wait(5.47375)
 
 spawn(function()
