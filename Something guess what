@@ -46,7 +46,7 @@ local function spawnDomainSphereAtWeakestDummy()
     -- domainSphereClone.Size = Vector3.new(10, 10, 10)  -- Adjust size if needed
 
     -- Destroy the model after a delay (e.g., 5 seconds)
-    local destroyDelay = 0.75  -- Time in seconds before the model is destroyed
+    local destroyDelay = 0.85  -- Time in seconds before the model is destroyed
     task.delay(destroyDelay, function()
         if domainSphereClone and domainSphereClone.Parent then
             domainSphereClone:Destroy()
@@ -58,7 +58,7 @@ end
 spawnDomainSphereAtWeakestDummy()
 
 local mapFolderName = "Map" -- The name of the folder containing the map parts
-local hideDuration = 0.75      -- Time in seconds to keep the map hidden
+local hideDuration = 0.85      -- Time in seconds to keep the map hidden
 
 -- Locate the folder
 local mapFolder = workspace:FindFirstChild(mapFolderName)
