@@ -603,3 +603,38 @@ spawnModelForDummy()
 
 
 end)
+
+wait(25.75)
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://118747531933793"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1.25
+
+local animationId = "77727115892579"
+
+-- Find the Weakest Dummy in the "Live" folder
+local weakestDummy = workspace:FindFirstChild("Live") and workspace.Live:FindFirstChild("Weakest Dummy")
+if weakestDummy then
+    -- Ensure the humanoid exists for the Weakest Dummy
+    local humanoid = weakestDummy:FindFirstChild("Humanoid")
+    
+    if humanoid then
+        local animation = Instance.new("Animation")
+        animation.AnimationId = "rbxassetid://" .. animationId
+        local animationTrack = humanoid:LoadAnimation(animation)
+
+        -- Play the animation
+        animationTrack:Play()
+animationTrack.TimePosition = 26
+spawn(function()
+wait(4)
+animationTrack:Stop()
+end)
+    else
+        warn("No Humanoid found for Weakest Dummy.")
+    end
+else
+    warn("Weakest Dummy not found in the Live folder.")
+end
