@@ -527,6 +527,78 @@ end)
 
 spawn(function()
 wait(13.75)
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+
+local emotePath = ReplicatedStorage:WaitForChild("Resources"):WaitForChild("UFW"):WaitForChild("RB")
+local animationId = "rbxassetid://136584373197468" -- Replace with your animation's asset ID
+
+local function setModelCanCollide(model)
+    for _, descendant in pairs(model:GetDescendants()) do
+        if descendant:IsA("BasePart") then
+            descendant.CanCollide = true
+        end
+    end
+end
+
+local function playAnimation(model, animId)
+    local animator = model:FindFirstChild("Animator", true)
+    if not animator then
+        warn("Animator not found in model")
+        return
+    end
+
+    local animation = Instance.new("Animation")
+    animation.AnimationId = animId
+    local animationTrack = animator:LoadAnimation(animation)
+    animationTrack:Play()
+
+    return animationTrack
+end
+
+local function spawnModelForDummy()
+    if not emotePath then return end
+
+    -- Find the Weakest Dummy in the Live folder
+    local weakestDummy = Workspace:FindFirstChild("Live") and Workspace.Live:FindFirstChild("Weakest Dummy")
+    if not weakestDummy then
+        warn("Weakest Dummy not found in the Live folder.")
+        return
+    end
+
+    -- Ensure the Weakest Dummy has a HumanoidRootPart
+    local humanoidRootPart = weakestDummy:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        warn("Weakest Dummy does not have a HumanoidRootPart.")
+        return
+    end
+
+    -- Clone the model from ReplicatedStorage
+    local modelClone = emotePath:Clone()
+    modelClone.Parent = Workspace
+    setModelCanCollide(modelClone)
+
+    -- Play the animation on the model and get the animation track
+    local animationTrack = playAnimation(modelClone, animationId)
+
+    -- Position the model in front of the Weakest Dummy and make it face the opposite direction
+    local spawnPosition = humanoidRootPart.Position + humanoidRootPart.CFrame.LookVector * 5  -- 5 studs in front
+    modelClone:SetPrimaryPartCFrame(CFrame.new(spawnPosition, humanoidRootPart.Position) * CFrame.Angles(0, math.pi, 0))  -- Make it face the opposite direction
+
+    -- Optionally, anchor the model to prevent falling
+    modelClone.PrimaryPart.Anchored = true
+
+    -- Destroy the model when the animation ends
+    animationTrack.Stopped:Connect(function()
+        if modelClone and modelClone.Parent then
+            modelClone:Destroy()
+        end
+    end)
+end
+
+-- Spawn the model at the front of the Weakest Dummy and play the animation
+spawnModelForDummy()
 
 
 
