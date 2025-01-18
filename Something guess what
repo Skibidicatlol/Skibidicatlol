@@ -1,6 +1,6 @@
 
 spawn(function()
-wait(5.47325)
+wait(5.47375)
 
 spawn(function()
 local Players = game:GetService("Players")
