@@ -1,0 +1,533 @@
+
+spawn(function()
+wait(5.47325)
+
+spawn(function()
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+
+local emotePath = ReplicatedStorage:WaitForChild("Resources"):WaitForChild("UFW"):WaitForChild("vfx"):WaitForChild("UFWSkyroom")
+local destroyDelay = 10  -- Time in seconds before the model is destroyed
+local sizeValue = 75  -- Set the desired size
+
+local function setModelCanCollide(model)
+    for _, descendant in pairs(model:GetDescendants()) do
+        if descendant:IsA("BasePart") then
+            descendant.CanCollide = true
+        end
+    end
+end
+
+local function activateParticleEmitters(model)
+    for _, descendant in pairs(model:GetDescendants()) do
+        if descendant:IsA("ParticleEmitter") then
+            descendant.Enabled = true  -- Activate the ParticleEmitter
+        end
+    end
+end
+
+local function spawnModelForDummy()
+    if not emotePath then return end
+
+    -- Find the Weakest Dummy in the Live folder
+    local weakestDummy = Workspace:FindFirstChild("Live") and Workspace.Live:FindFirstChild("Weakest Dummy")
+    if not weakestDummy then
+        warn("Weakest Dummy not found in the Live folder.")
+        return
+    end
+
+    -- Ensure the Weakest Dummy has a HumanoidRootPart
+    local humanoidRootPart = weakestDummy:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        warn("Weakest Dummy does not have a HumanoidRootPart.")
+        return
+    end
+
+    -- Clone the model from ReplicatedStorage
+    local modelClone = emotePath:Clone()
+    modelClone.Parent = Workspace
+    setModelCanCollide(modelClone)
+    activateParticleEmitters(modelClone)
+
+    -- Set the size of the model to 0.5
+    if modelClone:IsA("MeshPart") then
+        modelClone.Size = Vector3.new(sizeValue, sizeValue, sizeValue)
+        modelClone.Transparency = 0  -- Ensure the model is fully visible
+        modelClone.Anchored = true  -- Anchor the model to prevent it from falling through the map
+    end
+
+    -- Position the model above the Weakest Dummy's HumanoidRootPart
+    local spawnPosition = humanoidRootPart.Position + Vector3.new(0, 5, 0)  -- Adjust Y offset to 5 for visibility above the dummy
+    modelClone.CFrame = CFrame.new(spawnPosition)
+
+    -- Destroy the model after the specified delay
+    task.delay(destroyDelay, function()
+        if modelClone and modelClone.Parent then
+            modelClone:Destroy()
+        end
+    end)
+end
+
+-- Spawn the model at the HumanoidRootPart of the Weakest Dummy
+spawnModelForDummy()
+end)
+-- Configuration
+local mapFolderName = "Map" -- The name of the folder containing the map parts
+local hideDuration = 10      -- Time in seconds to keep the map hidden
+
+-- Locate the folder
+local mapFolder = workspace:FindFirstChild(mapFolderName)
+if not mapFolder then
+    warn("Folder named '" .. mapFolderName .. "' not found in workspace.")
+    return
+end
+
+-- Table to store original transparency values
+local originalTransparency = {}
+
+-- Function to hide the map
+local function hideMap()
+    for _, part in ipairs(mapFolder:GetDescendants()) do
+        if part:IsA("BasePart") then
+            -- Save original transparency if not already saved
+            if originalTransparency[part] == nil then
+                originalTransparency[part] = part.Transparency
+            end
+            part.Transparency = 1     -- Make the part invisible
+            part.CanCollide = true   -- Ensure parts remain collidable
+        elseif part:IsA("Decal") or part:IsA("SurfaceGui") then
+            part.Enabled = false     -- Hide decals and GUI elements
+        end
+    end
+end
+
+-- Function to show the map
+local function showMap()
+    for _, part in ipairs(mapFolder:GetDescendants()) do
+        if part:IsA("BasePart") then
+            -- Restore original transparency
+            part.Transparency = originalTransparency[part] or 0
+        elseif part:IsA("Decal") or part:IsA("SurfaceGui") then
+            part.Enabled = true      -- Re-enable decals and GUI elements
+        end
+    end
+    -- Clear the stored transparency data to free memory
+    originalTransparency = {}
+end
+
+-- Main logic
+hideMap()                          -- Hide the map
+task.wait(hideDuration)            -- Wait for the specified duration
+showMap()                          -- Show the map again
+end)
+
+
+
+task.delay(11.25, function()
+    
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    local ImpactFrames = Instance.new("Folder")
+    ImpactFrames.Name = "ImpactFrames"
+    ImpactFrames.Parent = ScreenGui
+    
+    local imageIds = {
+        "http://www.roblox.com/asset/?id=18468265266"
+    }
+    
+    for i = 1, 73 do
+        local ImageLabel = Instance.new("ImageLabel")
+        ImageLabel.Name = i
+        ImageLabel.Size = UDim2.new(0.005, 0, 0, 0)
+        ImageLabel.Position = UDim2.new(0, 0, 0, 0)
+        ImageLabel.ImageTransparency = 0
+        ImageLabel.BackgroundTransparency = 1
+        ImageLabel.Visible = true
+        ImageLabel.Parent = ImpactFrames
+        if imageIds[i] then
+            ImageLabel.Image = imageIds[i]
+        end
+        task.wait()
+    end
+    
+    for i = 1, 73 do
+        ImpactFrames:GetChildren()[i].Size = UDim2.new(1, 0, 1, 100)
+        ImpactFrames:GetChildren()[i].Position = UDim2.new(0, 0, 0, -100)
+        task.wait(1.5)
+        ImpactFrames:GetChildren()[i].ImageTransparency = 1
+    end
+    
+    ScreenGui:Destroy()
+    
+end)
+
+spawn(function()
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local Workspace = game:GetService("Workspace")
+    local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+
+    -- Find the Weakest Dummy model inside the "Live" folder in Workspace
+    local liveFolder = Workspace:WaitForChild("Live")
+    local weakestDummy = liveFolder:FindFirstChild("Weakest Dummy")
+
+    if not weakestDummy then
+        error("Weakest Dummy model not found in Live folder.")
+    end
+
+    -- Clone the "camRigWithLetterBox" model from ReplicatedStorage
+    local camRigWithLetterBox = ReplicatedStorage:WaitForChild("Resources"):WaitForChild("UFW"):WaitForChild("CamRigWithLetterBox"):Clone()
+
+    -- Parent the cloned "camRigWithLetterBox" model to the Weakest Dummy
+    camRigWithLetterBox.Parent = weakestDummy
+
+    -- Wait for the HumanoidRootPart of the Weakest Dummy
+    local humanoidRootPart = weakestDummy:WaitForChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        error("HumanoidRootPart not found in Weakest Dummy.")
+    end
+
+    -- Custom offset for position and rotation
+    local positionOffset = Vector3.new(0, -2.5, 0) -- Move down by 5 units (negative Y)
+    local rotationOffset = CFrame.Angles(math.rad(0), math.rad(180), math.rad(0)) -- Adjust the rotation offset as needed
+
+    -- Apply the offset to the camRigWithLetterBox
+    camRigWithLetterBox:SetPrimaryPartCFrame(humanoidRootPart.CFrame * CFrame.new(positionOffset) * rotationOffset)
+
+    -- Set the model's properties (disable collision and anchoring)
+    camRigWithLetterBox.PrimaryPart.Anchored = true
+    camRigWithLetterBox.PrimaryPart.CanCollide = false
+
+    -- Delay before creating the weld
+    spawn(function()
+        wait(0.1)
+        -- Create a weld to attach the "camRigWithLetterBox" model to the HumanoidRootPart
+        
+    end)
+
+    -- Optional: Play the "Camera" animation on the camRigWithLetterBox if needed
+    local animationController = camRigWithLetterBox:FindFirstChild("AnimationController")
+    if animationController then
+        local animator = animationController:FindFirstChild("Animator")
+        if animator then
+            -- Get the "Camera" animation from ReplicatedStorage
+            local cameraAnimation = ReplicatedStorage:WaitForChild("Resources"):WaitForChild("UFW"):WaitForChild("Camera")
+            if cameraAnimation and cameraAnimation:IsA("Animation") then
+                -- Load and play the animation on the camRigWithLetterBox model
+                local animationTrack = animator:LoadAnimation(cameraAnimation)
+                animationTrack:Play()
+
+                -- Optionally, destroy the model after the animation ends
+                animationTrack.Stopped:Connect(function()
+                    camRigWithLetterBox:Destroy()
+                end)
+            else
+                warn("Camera animation not found or is not a valid Animation object.")
+            end
+        else
+            warn("Animator not found in AnimationController.")
+        end
+    else
+        warn("AnimationController not found in the model.")
+    end
+
+    -- Find the "camera" part inside the camRigWithLetterBox model
+    local modelCameraPart = camRigWithLetterBox:FindFirstChild("camera")
+    if modelCameraPart then
+        -- Set the Camera to follow the "camera" part in the model
+        local player = Players.LocalPlayer
+        local camera = game.Workspace.CurrentCamera
+
+        -- Disable default camera control by setting CameraSubject to nil
+        camera.CameraSubject = nil
+        camera.CameraType = Enum.CameraType.Scriptable
+
+        -- Update the camera's position based on the "camera" part in the model
+        RunService.RenderStepped:Connect(function()
+            if modelCameraPart then
+                -- Set the camera's CFrame to follow the "camera" part in the model
+                camera.CFrame = modelCameraPart.CFrame
+            end
+        end)
+
+        -- When the camRigWithLetterBox is destroyed, revert the Camera to default behavior
+        camRigWithLetterBox.Destroyed:Connect(function()
+            camera.CameraSubject = player.Character:WaitForChild("Humanoid")
+            camera.CameraType = Enum.CameraType.Custom
+        end)
+    else
+        warn("'camera' part not found inside the camRigWithLetterBox.")
+    end
+end)
+
+task.delay(1.75, function()
+    
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    local ImpactFrames = Instance.new("Folder")
+    ImpactFrames.Name = "ImpactFrames"
+    ImpactFrames.Parent = ScreenGui
+    
+    local imageIds = {
+"rbxassetid://18472613799",
+"rbxassetid://18472613393",
+    }
+    
+    for i = 1, 73 do
+        local ImageLabel = Instance.new("ImageLabel")
+        ImageLabel.Name = i
+        ImageLabel.Size = UDim2.new(0.005, 0, 0, 0)
+        ImageLabel.Position = UDim2.new(0, 0, 0, 0)
+        ImageLabel.ImageTransparency = 0
+        ImageLabel.BackgroundTransparency = 1
+        ImageLabel.Visible = true
+        ImageLabel.Parent = ImpactFrames
+        if imageIds[i] then
+            ImageLabel.Image = imageIds[i]
+        end
+        task.wait()
+    end
+    
+    for i = 1, 73 do
+        ImpactFrames:GetChildren()[i].Size = UDim2.new(1, 0, 1, 100)
+        ImpactFrames:GetChildren()[i].Position = UDim2.new(0, 0, 0, -100)
+        task.wait(0.0375)
+        ImpactFrames:GetChildren()[i].ImageTransparency = 1
+    end
+    
+    ScreenGui:Destroy()
+    
+end)
+
+spawn(function()
+
+local Text = "Texthere"
+
+-- Import required services and modules
+local v22808 = require(game.ReplicatedStorage.Resources.UFW.TekrinnDialogue)
+
+-- Locate the Weakest Dummy in the "Live" folder
+local weakestDummy = workspace:FindFirstChild("Live") and workspace.Live:FindFirstChild("Weakest Dummy")
+if not weakestDummy then
+    warn("Weakest Dummy not found in the Live folder.")
+    return
+end
+
+-- Dialogue definitions
+local dialogues = {
+    {
+        {
+            Text = "Because with this...", 
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)), 
+                ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 17, 17)), 
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+            }), 
+            TextStrokeColor = Color3.new(0, 0, 0), 
+            Bold = false, 
+            Italic = false, 
+            Shake = {
+                Enabled = false, 
+                Intensity = 1, 
+                Lifetime = 2
+            }, 
+            TypeSpeed = 0.06
+        }, 
+        {
+            Text = "IT'S OVER!", 
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)), 
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 17, 17))
+            }), 
+            TextStrokeColor = Color3.new(0, 0, 0), 
+            Bold = true, 
+            Italic = true, 
+            Shake = {
+                Enabled = true, 
+                Intensity = 5, 
+                Lifetime = 1
+            }, 
+            TypeSpeed = 0.06
+        }
+    },
+    {
+        {
+            Text = "KJ's...", 
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)), 
+                ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 0, 0)), 
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+            }), 
+            TextStrokeColor = Color3.new(0, 0, 0), 
+            Bold = false, 
+            Italic = false, 
+            Shake = {
+                Enabled = false, 
+                Intensity = 1, 
+                Lifetime = 2
+            }, 
+            TypeSpeed = 0.07
+        }, 
+        {
+            Text = " 21 SERIES.", 
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)), 
+                ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 17, 17)), 
+                ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 255, 127)), 
+                ColorSequenceKeypoint.new(0.6, Color3.fromRGB(85, 170, 255)), 
+                ColorSequenceKeypoint.new(0.8, Color3.fromRGB(255, 0, 255)), 
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+            }), 
+            TextStrokeColor = Color3.fromRGB(85, 0, 0), 
+            Bold = true, 
+            Italic = true, 
+            Shake = {
+                Enabled = true, 
+                Intensity = 4, 
+                Lifetime = 1
+            }, 
+            TypeSpeed = 0.08
+        }
+    }
+}
+
+-- Function to display dialogue
+local function displayDialogue(dialogue)
+    v22808.Speak(weakestDummy, dialogue)
+end
+
+-- Display dialogues with delays
+spawn(function()
+    for _, dialogue in ipairs(dialogues) do
+        displayDialogue(dialogue)
+        wait(4) -- Adjust delay as needed
+    end
+end)
+
+end)
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://128136381213631"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1.25
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://99126314241685"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1.25
+
+local soundeffect = Instance.new("Sound")
+soundeffect.SoundId = "rbxassetid://95410275491981"
+soundeffect.Parent = game.Workspace
+soundeffect:Play()
+soundeffect.Volume = 1.25
+
+local animationId = "77727115892579"
+
+-- Find the Weakest Dummy in the "Live" folder
+local weakestDummy = workspace:FindFirstChild("Live") and workspace.Live:FindFirstChild("Weakest Dummy")
+if weakestDummy then
+    -- Ensure the humanoid exists for the Weakest Dummy
+    local humanoid = weakestDummy:FindFirstChild("Humanoid")
+    
+    if humanoid then
+        local animation = Instance.new("Animation")
+        animation.AnimationId = "rbxassetid://" .. animationId
+        local animationTrack = humanoid:LoadAnimation(animation)
+
+        -- Play the animation
+        animationTrack:Play()
+spawn(function()
+wait(15)
+animationTrack:Stop()
+
+
+end)
+    else
+        warn("No Humanoid found for Weakest Dummy.")
+    end
+else
+    warn("Weakest Dummy not found in the Live folder.")
+end
+spawn(function()
+wait(15)
+local animationId = "127774996303290"
+
+-- Find the Weakest Dummy in the "Live" folder
+local weakestDummy = workspace:FindFirstChild("Live") and workspace.Live:FindFirstChild("Weakest Dummy")
+if weakestDummy then
+    -- Ensure the humanoid exists for the Weakest Dummy
+    local humanoid = weakestDummy:FindFirstChild("Humanoid")
+    
+    if humanoid then
+        local animation = Instance.new("Animation")
+        animation.AnimationId = "rbxassetid://" .. animationId
+        local animationTrack = humanoid:LoadAnimation(animation)
+
+        -- Play the animation
+        animationTrack:Play()
+animationTrack.TimePosition = 15.25
+    else
+        warn("No Humanoid found for Weakest Dummy.")
+    end
+else
+    warn("Weakest Dummy not found in the Live folder.")
+end
+
+end)
+
+task.delay(4.25, function()
+    
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    local ImpactFrames = Instance.new("Folder")
+    ImpactFrames.Name = "ImpactFrames"
+    ImpactFrames.Parent = ScreenGui
+    
+    local imageIds = {
+"rbxassetid://18472612972",
+"rbxassetid://18472612563",
+"rbxassetid://18472612143",
+"rbxassetid://18472611130",
+"rbxassetid://18472610685",
+"rbxassetid://18472610370",
+    }
+    
+    for i = 1, 73 do
+        local ImageLabel = Instance.new("ImageLabel")
+        ImageLabel.Name = i
+        ImageLabel.Size = UDim2.new(0.005, 0, 0, 0)
+        ImageLabel.Position = UDim2.new(0, 0, 0, 0)
+        ImageLabel.ImageTransparency = 0
+        ImageLabel.BackgroundTransparency = 1
+        ImageLabel.Visible = true
+        ImageLabel.Parent = ImpactFrames
+        if imageIds[i] then
+            ImageLabel.Image = imageIds[i]
+        end
+        task.wait()
+    end
+    
+    for i = 1, 73 do
+        ImpactFrames:GetChildren()[i].Size = UDim2.new(1, 0, 1, 100)
+        ImpactFrames:GetChildren()[i].Position = UDim2.new(0, 0, 0, -100)
+        task.wait(0.05125)
+        ImpactFrames:GetChildren()[i].ImageTransparency = 1
+    end
+    
+    ScreenGui:Destroy()
+    
+end)
+
+spawn(function()
+wait(13.75)
+
+
+
+end)
